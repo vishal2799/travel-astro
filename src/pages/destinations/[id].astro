@@ -1,0 +1,178 @@
+---
+import { Icon } from 'astro-icon/components';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { destinations, tours2 } from '../../constants';
+import Layout from '../../layouts/Layout.astro';
+
+// Get the route parameter
+const { id } = Astro.params;
+
+// Find the destination based on the ID
+const destination = destinations.find((dest) => dest.id.toString() === id);
+
+// Find related tours
+const relatedTours = tours2.filter(
+  (tour) => tour.destinationId === destination?.id
+);
+
+// Define the static paths
+export async function getStaticPaths() {
+  return destinations.map((dest) => ({
+    params: { id: dest.id.toString() },
+  }));
+}
+---
+
+<Layout>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs
+        items={[
+          { label: 'Destinations', href: '/destinations' },
+          {
+            label: destination?.name,
+            href: `/destination/${destination?.id}`,
+          },
+        ]}
+      />
+
+      <h1 class='heading-1 mt-8 mb-6'>{destination?.name}</h1>
+
+      <div class='relative h-[400px] mb-8 rounded-xl overflow-hidden'>
+        <img
+          src={destination?.image}
+          alt={destination?.name}
+          class='object-cover h-full w-full'
+        />
+      </div>
+
+      <div class='grid md:grid-cols-3 gap-8'>
+        <section class='md:col-span-2'>
+          <article class='bg-white rounded-xl p-6 shadow-md mb-8'>
+            <h2 class='heading-2 mb-4'>About {destination?.name}</h2>
+            <p class='text-black-300 leading-relaxed mb-6'>
+              {destination?.description}
+            </p>
+
+            <h3 class='heading-3 mb-3'>Popular Activities</h3>
+            <ul class='space-y-2'>
+              {
+                destination?.activities.map((activity) => (
+                  <li class='flex items-start'>
+                    <svg
+                      class='w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                        stroke-width='2'
+                        d='M5 13l4 4L19 7'
+                      />
+                    </svg>
+                    <span class='text-black-300'>{activity}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </article>
+
+          <article class='bg-white rounded-xl p-6 shadow-md'>
+            <h2 class='heading-2 mb-4'>Travel Information</h2>
+            <div class='grid sm:grid-cols-2 gap-4'>
+              <div>
+                <h3 class='font-semibold mb-2 text-black-200'>
+                  Best Time to Visit
+                </h3>
+                <p class='text-black-300'>{destination?.bestTimeToVisit}</p>
+              </div>
+              <div>
+                <h3 class='font-semibold mb-2 text-black-200'>
+                  Average Temperature
+                </h3>
+                <p class='text-black-300'>{destination?.averageTemperature}</p>
+              </div>
+              <div>
+                <h3 class='font-semibold mb-2 text-black-200'>Language</h3>
+                <p class='text-black-300'>{destination?.language}</p>
+              </div>
+              <div>
+                <h3 class='font-semibold mb-2 text-black-200'>Currency</h3>
+                <p class='text-black-300'>{destination?.currency}</p>
+              </div>
+              <div>
+                <h3 class='font-semibold mb-2 text-black-200'>Time Zone</h3>
+                <p class='text-black-300'>{destination?.timeZone}</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <aside>
+          <article class='bg-white rounded-xl p-6 shadow-md mb-8'>
+            <h2 class='heading-2 mb-6'>Related Tours</h2>
+            <div class='space-y-6'>
+              {
+                relatedTours.map((tour) => (
+                  <div class='bg-white-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300'>
+                    <div class='relative h-40'>
+                      <img
+                        src={tour.image}
+                        alt={tour.title}
+                        class='object-cover w-full h-full'
+                      />
+                      <div class='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
+                      <div class='absolute bottom-0 left-0 p-4'>
+                        <h3 class='text-lg font-semibold text-white mb-1'>
+                          {tour.title}
+                        </h3>
+                      </div>
+                    </div>
+                    <div class='p-4'>
+                      <p class='text-black-300 text-sm mb-4'>
+                        {tour.description}
+                      </p>
+                      <div class='flex items-center justify-between'>
+                        <div class='flex items-center text-sm text-black-300'>
+                          <Icon
+                            name='geo-alt'
+                            class='w-4 h-4 mr-1 text-primary'
+                          />
+                          <span>{destination?.name}</span>
+                        </div>
+                        <a
+                          href={`/tours/${tour.id}`}
+                          class='btn-primary inline-flex items-center text-sm'
+                        >
+                          View Tour
+                          <Icon name='chevron-right' class='w-4 h-4 ml-1' />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </article>
+
+          <article class='bg-white rounded-xl p-6 shadow-md'>
+            <h2 class='heading-2 mb-4'>Get a Quote</h2>
+            <p class='text-black-300 mb-4'>
+              Interested in visiting {destination?.name}? Get a personalized
+              quote for your dream vacation.
+            </p>
+            <a
+              href='/quote'
+              class='btn-primary inline-flex items-center justify-center w-full'
+            >
+              Request a Quote
+              <Icon name='chevron-right' class='w-5 h-5 ml-2' />
+            </a>
+          </article>
+        </aside>
+      </div>
+    </div>
+  </div>
+</Layout>
