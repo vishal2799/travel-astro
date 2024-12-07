@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        raleway: ['var(--font-raleway)'],
+        poppins: ['Poppins'],
       },
       colors: {
         primary: {
