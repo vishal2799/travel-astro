@@ -1,0 +1,189 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <div class='min-h-screen bg-white-100'>
+    {/* Hero Section */}
+    <section class='relative h-[400px] md:h-[500px] bg-black-200 text-white'>
+      <img
+        src='/hero1.jpg'
+        alt='Indian Wanderlust Travel Team'
+        class='absolute inset-0 h-full w-full object-cover opacity-50'
+      />
+      <div class='absolute inset-0 flex items-center justify-center'>
+        <div class='text-center'>
+          <h1 class='text-4xl md:text-5xl font-bold mb-4'>
+            About Indian Wanderlust
+          </h1>
+          <p class='text-xl md:text-2xl'>Your Gateway to Incredible India</p>
+        </div>
+      </div>
+    </section>
+
+    {/* Company Overview */}
+    <section class='py-16 bg-white'>
+      <div class='container mx-auto px-4'>
+        <div class='max-w-3xl mx-auto text-center'>
+          <h2 class='heading-2 mb-6'>Our Story</h2>
+          <p class='text-lg text-black-300 mb-8'>
+            Indian Wanderlust was born out of a passion for sharing the rich
+            tapestry of India&apos;s culture, history, and landscapes with
+            travelers from around the world. As a small, dedicated team of
+            travel enthusiasts, we&apos;ve made it our mission to create
+            immersive, responsible, and unforgettable travel experiences that
+            connect people with the heart and soul of India.
+          </p>
+          <div class='grid grid-cols-2 md:grid-cols-4 gap-8'>
+            {
+              [
+                { icon: 'briefcase', label: '5+ Years Experience' },
+                { icon: 'people', label: '1000+ Happy Travelers' },
+                { icon: 'globe', label: '20+ Indian Destinations' },
+                { icon: 'hand-thumbs-up', label: '98% Customer Satisfaction' },
+              ].map((item) => (
+                <div class='flex flex-col items-center'>
+                  <div class='w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4'>
+                    <Icon name={item.icon} class='w-8 h-8 text-primary' />
+                  </div>
+                  <span class='text-black-200 font-semibold text-center'>
+                    {item.label}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Mission and Values */}
+    <section class='py-16 bg-white-100'>
+      <div class='container mx-auto px-4'>
+        <div class='max-w-3xl mx-auto text-center mb-12'>
+          <h2 class='heading-2 mb-6'>Our Mission & Values</h2>
+          <p class='text-lg text-black-300'>
+            At Indian Wanderlust, we&apos;re committed to showcasing the true
+            essence of India through authentic and sustainable travel
+            experiences. Our mission is to inspire, educate, and connect people
+            through the transformative power of Indian travel.
+          </p>
+        </div>
+        <div class='grid md:grid-cols-3 gap-8'>
+          {
+            [
+              {
+                title: 'Authenticity',
+                description:
+                  'We believe in creating genuine connections with local cultures and communities across India.',
+              },
+              {
+                title: 'Sustainability',
+                description:
+                  "We're dedicated to preserving India's natural and cultural heritage for future generations.",
+              },
+              {
+                title: 'Personalization',
+                description:
+                  "We craft unique journeys tailored to each traveler's interests and preferences.",
+              },
+              {
+                title: 'Excellence',
+                description:
+                  'We strive for the highest standards in service and customer satisfaction.',
+              },
+              {
+                title: 'Responsibility',
+                description:
+                  'We travel with respect for the environment and the communities we visit in India.',
+              },
+              {
+                title: 'Passion',
+                description:
+                  "We're driven by our love for India and our desire to share its wonders with others.",
+              },
+            ].map((value) => (
+              <div class='bg-white p-6 rounded-lg shadow-md'>
+                <h3 class='text-xl font-semibold mb-3 text-primary'>
+                  {value.title}
+                </h3>
+                <p class='text-black-300'>{value.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* Our Expertise */}
+    <section class='py-16 bg-white'>
+      <div class='container mx-auto px-4'>
+        <h2 class='heading-2 text-center mb-12'>Our Expertise</h2>
+        <div class='grid md:grid-cols-2 gap-8 items-center'>
+          <div>
+            <img
+              src='/services.jpg'
+              alt='Indian travel experience'
+              width={600}
+              height={400}
+              class='rounded-lg shadow-md'
+            />
+          </div>
+          <div>
+            <h3 class='text-2xl font-semibold mb-4 text-primary'>
+              Specialized in Indian Travel
+            </h3>
+            <p class='text-black-300 mb-6'>
+              With our deep knowledge of India&apos;s diverse regions, cultures,
+              and attractions, we offer expert guidance to ensure you experience
+              the best of what this incredible country has to offer. Our team
+              has personally explored the hidden gems, tasted the local
+              cuisines, and immersed in the vibrant traditions that make India
+              unique.
+            </p>
+            <ul class='space-y-2 mb-6'>
+              {
+                [
+                  'Customized itineraries covering all of India',
+                  'Expert local guides and drivers',
+                  'Authentic cultural experiences',
+                  'Accommodation ranging from heritage hotels to luxury resorts',
+                  '24/7 on-ground support throughout your journey',
+                ].map((item) => (
+                  <li class='flex items-start'>
+                    <Icon
+                      name='chevron-right'
+                      class='w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1'
+                    />
+                    <span class='text-black-300'>{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Call to Action */}
+    <section class='py-16 bg-primary text-white'>
+      <div class='container mx-auto px-4 text-center'>
+        <h2 class='text-3xl md:text-4xl font-bold mb-6'>
+          Ready to Explore India?
+        </h2>
+        <p class='text-xl mb-8'>
+          Let us help you create memories that last a lifetime in incredible
+          India.
+        </p>
+        <a
+          href='/quote'
+          class='btn bg-white text-primary hover:bg-white-100 transition-colors inline-flex items-center'
+        >
+          Start Planning Your Trip
+          <Icon name='chevron-right' class='w-5 h-5 ml-2' />
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>
