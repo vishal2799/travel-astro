@@ -1,5 +1,6 @@
 ---
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Layout from '../layouts/Layout.astro';
 
 const galleryItems = [
   {
@@ -60,50 +61,52 @@ const galleryItems = [
 ];
 ---
 
-<div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
-  <div class='container mx-auto px-4 py-8'>
-    <Breadcrumbs items={[{ label: 'Gallery', href: '/gallery' }]} />
+<Layout>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs items={[{ label: 'Gallery', href: '/gallery' }]} />
 
-    <h1
-      class='text-4xl md:text-5xl font-bold mt-8 text-primary text-center mb-8'
-    >
-      Incredible India Gallery
-    </h1>
-    <p class='text-xl text-black-300 text-center mb-12 max-w-2xl mx-auto'>
-      Explore the beauty and diversity of India through our curated collection
-      of stunning photographs.
-    </p>
+      <h1
+        class='text-4xl md:text-5xl font-bold mt-8 text-primary text-center mb-8'
+      >
+        Incredible India Gallery
+      </h1>
+      <p class='text-xl text-black-300 text-center mb-12 max-w-2xl mx-auto'>
+        Explore the beauty and diversity of India through our curated collection
+        of stunning photographs.
+      </p>
 
-    <div
-      id='gallery'
-      class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-    >
-      {
-        galleryItems.map((item) => (
-          <div
-            class='relative overflow-hidden rounded-lg shadow-md cursor-pointer group'
-            data-id={item.id}
-            data-src={item.src}
-            data-alt={item.alt}
-            data-location={item.location}
-          >
-            <img
-              src={item.src}
-              alt={item.alt}
-              class='w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110'
-            />
-            <div class='absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end'>
-              <div class='p-4 text-white'>
-                <h3 class='text-lg font-semibold'>{item.alt}</h3>
-                <p class='text-sm'>{item.location}</p>
+      <div
+        id='gallery'
+        class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+      >
+        {
+          galleryItems.map((item) => (
+            <div
+              class='relative overflow-hidden rounded-lg shadow-md cursor-pointer group'
+              data-id={item.id}
+              data-src={item.src}
+              data-alt={item.alt}
+              data-location={item.location}
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                class='w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110'
+              />
+              <div class='absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end'>
+                <div class='p-4 text-white'>
+                  <h3 class='text-lg font-semibold'>{item.alt}</h3>
+                  <p class='text-sm'>{item.location}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
-</div>
+</Layout>
 
 <script>
   const gallery: any = document.getElementById('gallery');
