@@ -1,0 +1,27 @@
+---
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import DestinationCard from '../../components/DestinationCard.astro';
+import { destinations } from '../../constants';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs items={[{ label: 'Destinations', href: '/destinations' }]} />
+
+      <h1 class='heading-1 mt-8 mb-4'>Our Destinations</h1>
+      <p class='subheading mb-12'>
+        Explore our handpicked selection of dream locations across India.
+      </p>
+
+      <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        {
+          destinations.map((destination) => (
+            <DestinationCard destination={destination} key={destination.id} />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>
