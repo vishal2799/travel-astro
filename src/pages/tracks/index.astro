@@ -1,0 +1,199 @@
+---
+import { Icon } from 'astro-icon/components';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const tracks = [
+  {
+    id: 1,
+    title: 'Sacred India Pilgrimage',
+    description:
+      "Embark on a transformative journey through India's most revered spiritual sites",
+    image: '/tour11.jpg',
+    duration: '12 days',
+    groupSize: 'Max 16 people',
+    destinations: ['Varanasi', 'Rishikesh', 'Amritsar', 'Bodhgaya'],
+    highlights: [
+      'Ganga Aarti ceremony',
+      'Yoga in Rishikesh',
+      'Golden Temple visit',
+      'Mahabodhi Temple',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Himalayan Meditation Retreat',
+    description:
+      'Find inner peace and tranquility in the serene Himalayan mountains',
+    image: '/tour11.jpg',
+    duration: '10 days',
+    groupSize: 'Max 12 people',
+    destinations: ['Dharamshala', 'McLeod Ganj', 'Manali'],
+    highlights: [
+      'Tibetan Buddhism',
+      'Meditation sessions',
+      'Dalai Lama Temple',
+      'Nature walks',
+    ],
+  },
+  {
+    id: 3,
+    title: 'South India Temple Trail',
+    description:
+      "Discover the rich spiritual heritage of South India's magnificent temples",
+    image: '/tour11.jpg',
+    duration: '14 days',
+    groupSize: 'Max 14 people',
+    destinations: ['Madurai', 'Thanjavur', 'Mahabalipuram', 'Tirupati'],
+    highlights: [
+      'Meenakshi Temple',
+      'Brihadeeswara Temple',
+      'Shore Temple',
+      'Tirupati Balaji',
+    ],
+  },
+  {
+    id: 4,
+    title: 'Ayurvedic Wellness Journey',
+    description:
+      'Rejuvenate your body and soul with ancient Ayurvedic practices in Kerala',
+    image: '/tour11.jpg',
+    duration: '8 days',
+    groupSize: 'Max 10 people',
+    destinations: ['Kovalam', 'Varkala', 'Alleppey'],
+    highlights: [
+      'Ayurvedic treatments',
+      'Yoga sessions',
+      'Backwater cruise',
+      'Herbal gardens',
+    ],
+  },
+  {
+    id: 5,
+    title: 'Buddhist Circuit Expedition',
+    description:
+      'Follow in the footsteps of Buddha on this enlightening spiritual journey',
+    image: '/tour11.jpg',
+    duration: '11 days',
+    groupSize: 'Max 15 people',
+    destinations: ['Lumbini', 'Bodhgaya', 'Sarnath', 'Kushinagar'],
+    highlights: [
+      "Buddha's birthplace",
+      'Bodhi Tree',
+      'Dhamek Stupa',
+      'Mahaparinirvana Temple',
+    ],
+  },
+  {
+    id: 6,
+    title: 'Spiritual Rajasthan',
+    description:
+      'Experience the mystical and spiritual side of colorful Rajasthan',
+    image: '/tour11.jpg',
+    duration: '9 days',
+    groupSize: 'Max 12 people',
+    destinations: ['Pushkar', 'Ajmer', 'Ranakpur', 'Mount Abu'],
+    highlights: [
+      'Brahma Temple',
+      'Ajmer Sharif Dargah',
+      'Jain Temples',
+      'Sunset Point meditation',
+    ],
+  },
+];
+---
+
+<Layout>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs items={[{ label: 'Spiritual Tracks', href: '/tracks' }]} />
+
+      <div class='max-w-4xl mx-auto mt-12 mb-16'>
+        <h1
+          class='text-4xl md:text-5xl font-bold text-primary mb-6 text-center'
+        >
+          Discover Our Spiritual Journeys
+        </h1>
+        <p class='text-xl text-black-300 text-center'>
+          Embark on transformative experiences designed to nourish your soul and
+          connect with India&apos;s profound spirituality
+        </p>
+      </div>
+
+      <div class='grid gap-12'>
+        {
+          tracks.map((track, index) => (
+            <div class='relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300'>
+              <div
+                class={`flex flex-col md:flex-row ${
+                  index % 2 === 0 ? 'md:flex-row-reverse' : ''
+                }`}
+              >
+                <div class='md:w-2/5 relative'>
+                  <img
+                    src={track.image}
+                    alt={track.title}
+                    width={600}
+                    height={400}
+                    class='w-full h-full object-cover'
+                  />
+                  <div class='absolute inset-0 bg-gradient-to-b from-transparent to-primary/50 flex items-end p-6'>
+                    <h2 class='text-3xl font-bold text-white'>{track.title}</h2>
+                  </div>
+                </div>
+                <div class='md:w-3/5 p-6 md:p-8 flex flex-col'>
+                  <p class='text-lg text-primary mb-6'>{track.description}</p>
+                  <div class='grid grid-cols-2 gap-4 mb-6'>
+                    <div class='flex items-center text-sm text-primary'>
+                      <Icon name='clock' class='w-5 h-5 mr-2 text-primary' />
+                      <span>{track.duration}</span>
+                    </div>
+                    <div class='flex items-center text-sm text-primary'>
+                      <Icon name='people' class='w-5 h-5 mr-2 text-primary' />
+                      <span>{track.groupSize}</span>
+                    </div>
+                  </div>
+                  <div class='mb-6'>
+                    <h3 class='text-lg font-semibold text-primary mb-2 flex items-center'>
+                      <Icon name='geo-alt' class='w-5 h-5 mr-2 text-primary' />
+                      Sacred Destinations
+                    </h3>
+                    <p class='text-primary'>{track.destinations.join(' • ')}</p>
+                  </div>
+                  <div class='mb-6 flex-grow'>
+                    <h3 class='text-lg font-semibold text-primary mb-2 flex items-center'>
+                      <Icon name='flower1' class='w-5 h-5 mr-2 text-primary' />
+                      Spiritual Highlights
+                    </h3>
+                    <ul class='list-none text-primary columns-2'>
+                      {track.highlights.map((highlight, index) => (
+                        <li class='flex items-center mb-2'>
+                          <Icon
+                            name='tree'
+                            class='w-4 h-4 mr-2 text-primary flex-shrink-0'
+                          />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a
+                    href={`/tracks/${track.id}`}
+                    class='btn-primary text-center group self-start mt-auto flex items-center justify-center px-6 py-2 rounded-full transition-colors duration-300'
+                  >
+                    Explore This Journey
+                    <Icon
+                      name='wind'
+                      class='w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1'
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class='absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary/60 to-primary' />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

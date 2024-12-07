@@ -1,0 +1,44 @@
+---
+import { Icon } from 'astro-icon/components';
+const { post } = Astro.props;
+---
+
+<article class='bg-white rounded-lg overflow-hidden shadow-md group'>
+  <div class='relative h-48 overflow-hidden'>
+    <img
+      src={post.image}
+      alt={post.title}
+      class='object-cover transition-transform duration-300 group-hover:scale-105'
+    />
+  </div>
+  <div class='p-6'>
+    <a href={`/blogs/${post.id}`} class='block'>
+      <h2
+        class='text-2xl font-bold mb-2 group-hover:text-primary transition-colors'
+      >
+        {post.title}
+      </h2>
+    </a>
+    <p class='text-black-300 mb-4'>{post.excerpt}</p>
+    <div class='flex items-center text-sm text-black-300 mb-4'>
+      <Icon name='people' class='w-4 h-4 mr-2' />
+      <span class='mr-4'>{post.author}</span>
+      <Icon name='clock' class='w-4 h-4 mr-2' />
+      <span>{post.readTime}</span>
+    </div>
+    <div class='flex items-center justify-between'>
+      <span
+        class='inline-block bg-primary-100 text-primary text-xs px-2 py-1 rounded-full'
+      >
+        {post.category}
+      </span>
+      <a
+        href={`/blogs/${post.id}`}
+        class='text-primary hover:text-primary-100 transition-colors inline-flex items-center'
+      >
+        Read More
+        <Icon name='chevron-right' class='w-4 h-4 ml-1' />
+      </a>
+    </div>
+  </div>
+</article>
