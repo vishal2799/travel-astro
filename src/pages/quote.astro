@@ -1,0 +1,251 @@
+---
+import { Icon } from 'astro-icon/components';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs items={[{ label: 'Get Quote', href: '/quote' }]} />
+
+      <div class='max-w-6xl mx-auto mt-12'>
+        <h1 class='heading-1 mb-6 text-center'>Get a Personalized Quote</h1>
+        <p class='subheading text-center mb-12'>
+          Tell us about your dream Indian adventure, and well craft the perfect
+          itinerary for you.
+        </p>
+
+        <div class='bg-white rounded-2xl shadow-xl overflow-hidden'>
+          <div class='md:flex'>
+            <div class='md:w-1/2 p-8 md:p-12'>
+              <h2 class='heading-3 mb-6'>Your Travel Details</h2>
+              <form class='space-y-6'>
+                <div class='grid md:grid-cols-2 gap-6'>
+                  <div>
+                    <label
+                      for='name'
+                      class='block text-sm font-medium text-black-200 mb-1'
+                    >
+                      Full Name
+                    </label>
+                    <input
+                      type='text'
+                      id='name'
+                      name='name'
+                      class='input'
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for='email'
+                      class='block text-sm font-medium text-black-200 mb-1'
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      type='email'
+                      id='email'
+                      name='email'
+                      class='input'
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for='phone'
+                    class='block text-sm font-medium text-black-200 mb-1'
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type='tel'
+                    id='phone'
+                    name='phone'
+                    class='input'
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for='destination'
+                    class='block text-sm font-medium text-black-200 mb-1'
+                  >
+                    Preferred Destination(s)
+                  </label>
+                  <input
+                    type='text'
+                    id='destination'
+                    name='destination'
+                    class='input'
+                    required
+                  />
+                </div>
+                <div class='grid md:grid-cols-2 gap-6'>
+                  <div>
+                    <label
+                      for='travel-date'
+                      class='block text-sm font-medium text-black-200 mb-1'
+                    >
+                      Estimated Travel Date
+                    </label>
+                    <div class='relative'>
+                      <input
+                        type='date'
+                        id='travel-date'
+                        name='travel-date'
+                        class='input pr-10'
+                        required
+                      />
+                      <Icon
+                        name='calendar'
+                        class='absolute right-3 top-1/2 -translate-y-1/2 text-black-300 pointer-events-none'
+                        size={20}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      for='duration'
+                      class='block text-sm font-medium text-black-200 mb-1'
+                    >
+                      Trip Duration (days)
+                    </label>
+                    <div class='relative'>
+                      <input
+                        type='number'
+                        id='duration'
+                        name='duration'
+                        min='1'
+                        class='input pr-10'
+                        required
+                      />
+                      <Icon
+                        name='clock'
+                        class='absolute right-3 top-1/2 -translate-y-1/2 text-black-300 pointer-events-none'
+                        size={20}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class='grid md:grid-cols-2 gap-6'>
+                  <div>
+                    <label
+                      for='travelers'
+                      class='block text-sm font-medium text-black-200 mb-1'
+                    >
+                      Number of Travelers
+                    </label>
+                    <div class='relative'>
+                      <select
+                        id='travelers'
+                        name='travelers'
+                        class='input pr-10 appearance-none'
+                        required
+                      >
+                        {
+                          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                            <option value={num}>
+                              {num} {num === 1 ? 'Traveler' : 'Travelers'}
+                            </option>
+                          ))
+                        }
+                        <option value='10+'>10+ Travelers</option>
+                      </select>
+                      <Icon
+                        name='people'
+                        class='absolute right-3 top-1/2 -translate-y-1/2 text-black-300 pointer-events-none'
+                        size={20}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      for='budget'
+                      class='block text-sm font-medium text-black-200 mb-1'
+                    >
+                      Estimated Budget per Person (USD)
+                    </label>
+                    <select id='budget' name='budget' class='input' required>
+                      <option value=''>Select a budget range</option>
+                      <option value='1000-2000'>$1,000 - $2,000</option>
+                      <option value='2000-3000'>$2,000 - $3,000</option>
+                      <option value='3000-5000'>$3,000 - $5,000</option>
+                      <option value='5000+'>$5,000+</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for='message'
+                    class='block text-sm font-medium text-black-200 mb-1'
+                  >
+                    Additional Details or Special Requests
+                  </label>
+                  <textarea
+                    id='message'
+                    name='message'
+                    rows={4}
+                    class='input'
+                    placeholder='Tell us about your travel preferences, interests, or any specific requirements.'
+                  ></textarea>
+                </div>
+                <button type='submit' class='btn-primary w-full'>
+                  Request Quote
+                </button>
+              </form>
+            </div>
+            <div class='md:w-1/2 bg-primary-100 p-8 md:p-12'>
+              <div class='space-y-8'>
+                <div>
+                  <h2 class='heading-3 mb-4 text-primary'>Why Choose Us?</h2>
+                  <ul class='space-y-3'>
+                    {
+                      [
+                        'Expertly crafted itineraries',
+                        '24/7 on-trip support',
+                        'Handpicked accommodations',
+                        'Authentic local experiences',
+                        'Competitive pricing',
+                      ].map((item) => (
+                        <li class='flex items-start'>
+                          <Icon
+                            name='check-circle'
+                            class='w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1'
+                          />
+                          <span class='text-black-200'>{item}</span>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+                <div class='bg-white rounded-xl p-6 shadow-md'>
+                  <h2 class='heading-3 mb-4 text-primary'>
+                    Customer Testimonial
+                  </h2>
+                  <blockquote class='italic mb-4 text-black-300'>
+                    Indian Wanderlust crafted the perfect itinerary for our
+                    family trip to Rajasthan. Every detail was taken care of,
+                    and the experiences were unforgettable!
+                  </blockquote>
+                  <p class='font-semibold text-black-200'>
+                    - Sarah J., New York
+                  </p>
+                </div>
+                <div class='relative h-64 rounded-xl overflow-hidden'>
+                  <img
+                    src='/tour1.jpg'
+                    alt='Beautiful Indian landscape'
+                    class='absolute inset-0 w-full h-full object-cover'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

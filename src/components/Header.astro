@@ -1,0 +1,148 @@
+---
+import { navLinks } from '../constants';
+---
+
+<header id='header' class='sticky top-0 z-50 transition-all duration-300'>
+  <div class='container mx-auto px-4 py-4 flex items-center justify-between'>
+    <!-- Logo Section -->
+    <a href='/' class='flex items-center space-x-2'>
+      <img
+        src='/Logo1.png'
+        alt='Indian Wanderlust'
+        width='40'
+        height='40'
+        class='w-10 h-10'
+      />
+      <span class='text-xl font-bold text-primary'>Indian Wanderlust</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class='hidden md:flex items-center space-x-6' id='desktop-nav'>
+      {
+        navLinks.map((item) => (
+          <a
+            href={item.url}
+            class='text-sm font-medium nav-link transition-all duration-300'
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href='/quote'
+        class='btn-primary transition-all duration-300 hover:scale-105'
+      >
+        Get Quote
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button
+      id='menu-button'
+      class='md:hidden text-black-200 hover:text-primary transition-colors duration-300'
+      aria-label='Toggle mobile menu'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='2'
+        stroke='currentColor'
+        class='w-6 h-6'
+      >
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          d='M4 6h16M4 12h16M4 18h16'></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id='mobile-menu'
+    class='fixed inset-0 bg-white z-50 hidden flex-col items-center space-y-6 p-8 opacity-0 transform scale-95 transition-all duration-300'
+  >
+    <button
+      id='close-menu'
+      class='absolute top-6 right-6 text-black-200 hover:text-primary transition-colors duration-300'
+      aria-label='Close menu'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='2'
+        stroke='currentColor'
+        class='w-6 h-6'
+      >
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          d='M6 18L18 6M6 6l12 12'></path>
+      </svg>
+    </button>
+
+    <nav class='flex flex-col items-center space-y-6 mt-16'>
+      {
+        navLinks.map((item) => (
+          <a
+            href={item.url}
+            class='text-lg font-medium nav-link transition-transform duration-300 transform hover:scale-105'
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href='/quote'
+        class='btn-primary mt-4 transition-transform duration-300 transform hover:scale-105'
+      >
+        Get Quote
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('header');
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeButton = document.getElementById('close-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Highlight Active Link
+    const currentPath = window.location.pathname;
+    navLinks.forEach((link) => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('text-primary', 'border-b-2', 'border-primary');
+      }
+    });
+
+    // Scroll Effect
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        header?.classList.add('bg-white', 'shadow-md');
+      } else {
+        header?.classList.remove('bg-white', 'shadow-md');
+      }
+    };
+
+    // Mobile Menu Toggle
+    const openMenu = () => {
+      mobileMenu?.classList.remove('hidden', 'opacity-0', 'scale-95');
+      mobileMenu?.classList.add('flex', 'opacity-100', 'scale-100');
+    };
+
+    const closeMenu = () => {
+      mobileMenu?.classList.add('hidden', 'opacity-0', 'scale-95');
+      mobileMenu?.classList.remove('flex', 'opacity-100', 'scale-100');
+    };
+
+    // Event Listeners
+    window.addEventListener('scroll', handleScroll);
+    menuButton?.addEventListener('click', openMenu);
+    closeButton?.addEventListener('click', closeMenu);
+  });
+</script>
