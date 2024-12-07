@@ -1,0 +1,141 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const galleryItems = [
+  {
+    id: 1,
+    src: '/images/tn/1.jpg',
+    alt: 'Taj Mahal, Agra',
+    location: 'Agra, Uttar Pradesh',
+  },
+  {
+    id: 2,
+    src: '/images/tn/2.jpg',
+    alt: 'Hawa Mahal, Jaipur',
+    location: 'Jaipur, Rajasthan',
+  },
+  {
+    id: 3,
+    src: '/images/tn/3.jpg',
+    alt: 'Backwaters of Kerala',
+    location: 'Kerala',
+  },
+  {
+    id: 4,
+    src: '/images/tn/4.jpg',
+    alt: 'Golden Temple, Amritsar',
+    location: 'Amritsar, Punjab',
+  },
+  {
+    id: 5,
+    src: '/images/tn/5.jpg',
+    alt: 'Varanasi Ghats',
+    location: 'Varanasi, Uttar Pradesh',
+  },
+  {
+    id: 6,
+    src: '/images/hp/1.jpg',
+    alt: 'Mysore Palace',
+    location: 'Mysore, Karnataka',
+  },
+  {
+    id: 7,
+    src: '/images/hp/2.jpg',
+    alt: 'Pangong Lake, Ladakh',
+    location: 'Ladakh',
+  },
+  { id: 8, src: '/images/hp/3.jpg', alt: 'Beaches of Goa', location: 'Goa' },
+  {
+    id: 9,
+    src: '/images/hp/4.jpg',
+    alt: 'Mehrangarh Fort, Jodhpur',
+    location: 'Jodhpur, Rajasthan',
+  },
+  {
+    id: 10,
+    src: '/images/hp/5.jpg',
+    alt: 'Sundarbans National Park',
+    location: 'West Bengal',
+  },
+];
+---
+
+<div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+  <div class='container mx-auto px-4 py-8'>
+    <Breadcrumbs items={[{ label: 'Gallery', href: '/gallery' }]} />
+
+    <h1
+      class='text-4xl md:text-5xl font-bold mt-8 text-primary text-center mb-8'
+    >
+      Incredible India Gallery
+    </h1>
+    <p class='text-xl text-black-300 text-center mb-12 max-w-2xl mx-auto'>
+      Explore the beauty and diversity of India through our curated collection
+      of stunning photographs.
+    </p>
+
+    <div
+      id='gallery'
+      class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+    >
+      {
+        galleryItems.map((item) => (
+          <div
+            class='relative overflow-hidden rounded-lg shadow-md cursor-pointer group'
+            data-id={item.id}
+            data-src={item.src}
+            data-alt={item.alt}
+            data-location={item.location}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              class='w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110'
+            />
+            <div class='absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end'>
+              <div class='p-4 text-white'>
+                <h3 class='text-lg font-semibold'>{item.alt}</h3>
+                <p class='text-sm'>{item.location}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  const gallery: any = document.getElementById('gallery');
+
+  gallery.addEventListener('click', (event: any) => {
+    const target = event.target.closest('[data-id]');
+    if (!target) return;
+
+    const src = target.dataset.src;
+    const alt = target.dataset.alt;
+    const location = target.dataset.location;
+
+    const lightbox = document.createElement('div');
+    lightbox.className =
+      'fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50';
+
+    lightbox.innerHTML = `
+      <div class="relative max-w-4xl w-full">
+        <button
+          class="absolute top-4 right-4 text-white hover:text-primary transition-colors"
+          aria-label="Close lightbox"
+          onclick="this.parentElement.parentElement.remove()"
+        >
+          ✖
+        </button>
+        <img src="${src}" alt="${alt}" class="w-full h-auto" />
+        <div class="absolute bottom-4 left-4 text-white">
+          <h3 class="text-xl font-semibold">${alt}</h3>
+          <p>${location}</p>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(lightbox);
+  });
+</script>
