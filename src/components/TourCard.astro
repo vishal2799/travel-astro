@@ -1,0 +1,64 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const { tour } = Astro.props;
+---
+
+<div
+  class='bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2'
+>
+  <div class='relative h-[250px] overflow-hidden'>
+    <img
+      src={tour.image}
+      alt={tour.title}
+      class='absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110'
+    />
+    <div
+      class='absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300'
+    >
+    </div>
+    <div class='absolute bottom-4 left-4 right-4'>
+      <h3 class='text-2xl font-bold text-white mb-2'>{tour.title}</h3>
+      <span
+        class='inline-block bg-secondary text-black text-xs font-semibold px-2 py-1 rounded-full'
+      >
+        {tour.tourType}
+      </span>
+    </div>
+  </div>
+  <div class='p-6'>
+    <p class='text-black-300 mb-4 line-clamp-3'>{tour.description}</p>
+    <div class='flex items-center justify-between text-sm text-black-300 mb-4'>
+      <div class='flex items-center'>
+        <Icon name='calendar' class='w-4 h-4 mr-2 text-primary' />
+        <span>{tour.bestSeason}</span>
+      </div>
+      <div class='flex items-center'>
+        <Icon name='geo-alt' class='w-4 h-4 mr-2 text-primary' />
+        <span>Multiple Destinations</span>
+      </div>
+    </div>
+    <div class='mb-4'>
+      <h4 class='text-sm font-semibold text-black-200 mb-2'>Highlights:</h4>
+      <div class='flex flex-wrap gap-2'>
+        {
+          tour.highlights.map((highlight: unknown) => (
+            <span class='inline-block bg-primary-100 text-primary text-xs font-semibold px-2 py-1 rounded-full'>
+              {highlight}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+    <a
+      href={`/tours/${tour.id}`}
+      class='block w-full text-center bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-100 hover:text-primary transition-colors duration-300 group'
+    >
+      Explore Tour
+      <Icon
+        name='chevron-right'
+        class='inline-block w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1'
+      />
+    </a>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<footer class='bg-black-200 text-white'>
+  <div class='container mx-auto container-padding section-padding'>
+    <div class='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
+      {/* First column - About */}
+      <div>
+        <div class='flex items-center space-x-2 mb-6'>
+          <img src='/Logo1.png' alt='Indian Wanderlust' class='w-10 h-10' />
+          <span class='text-xl font-bold text-white'> Indian Wanderlust </span>
+        </div>
+        <p class='text-white-100 leading-relaxed'>
+          Crafting unforgettable travel experiences across India. Let us take
+          you on a journey through the incredible diversity of our country.
+        </p>
+      </div>
+
+      {/* Second column - Contact */}
+      <div>
+        <h3 class='heading-3 mb-4 text-white'>Contact</h3>
+        <div class='space-y-3 text-white-100'>
+          <p class='flex items-center hover:text-secondary transition-colors'>
+            <Icon name='telephone' class='w-5 h-5 mr-3 flex-shrink-0' />
+            <span>+91 98765 43210</span>
+          </p>
+          <p class='flex items-center hover:text-secondary transition-colors'>
+            <Icon name='envelope' class='w-5 h-5 mr-3 flex-shrink-0' />
+            <span>info@indianwanderlust.com</span>
+          </p>
+          <p class='flex items-center hover:text-secondary transition-colors'>
+            <Icon name='geo-alt' class='w-5 h-5 mr-3 flex-shrink-0' />
+            <span>123 Travel Street, New Delhi, India</span>
+          </p>
+        </div>
+      </div>
+
+      {/* Third column - Quick Links */}
+      <div>
+        <h3 class='heading-3 mb-4 text-white'>Quick Links</h3>
+        <ul class='space-y-3'>
+          <li>
+            <a
+              href='/destinations'
+              class='text-white-100 hover:text-secondary transition-colors'
+            >
+              Destinations
+            </a>
+          </li>
+          <li>
+            <a
+              href='/tours'
+              class='text-white-100 hover:text-secondary transition-colors'
+            >
+              Tours
+            </a>
+          </li>
+          <li>
+            <a
+              href='/services'
+              class='text-white-100 hover:text-secondary transition-colors'
+            >
+              Services
+            </a>
+          </li>
+          <li>
+            <a
+              href='/about-us'
+              class='text-white-100 hover:text-secondary transition-colors'
+            >
+              About Us
+            </a>
+          </li>
+          <li>
+            <a
+              href='/contact-us'
+              class='text-white-100 hover:text-secondary transition-colors'
+            >
+              Contact
+            </a>
+          </li>
+          <li>
+            <a
+              href='/blogs'
+              class='text-white-100 hover:text-secondary transition-colors'
+            >
+              Blog
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      {/* Fourth column - Social & Newsletter */}
+      <div>
+        <h3 class='heading-3 mb-4 text-white'>Follow Us</h3>
+        <div class='flex flex-wrap gap-4'>
+          <a
+            href='#'
+            class='bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors'
+            aria-label='Follow us on Facebook'
+          >
+            <Icon name='facebook' class='w-5 h-5' />
+          </a>
+          <a
+            href='#'
+            class='bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors'
+            aria-label='Follow us on Twitter'
+          >
+            <Icon name='twitter-x' class='w-5 h-5' />
+          </a>
+          <a
+            href='#'
+            class='bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors'
+            aria-label='Follow us on Instagram'
+          >
+            <Icon name='instagram' class='w-5 h-5' />
+          </a>
+        </div>
+        <div class='mt-6'>
+          <h4 class='font-medium mb-2 text-white'>
+            Subscribe to our newsletter
+          </h4>
+          <form class='flex flex-col sm:flex-row gap-2'>
+            <input
+              type='email'
+              placeholder='Enter your email'
+              class='input bg-white/10 text-white placeholder-gray-400'
+            />
+            <button type='submit' class='btn-primary whitespace-nowrap'>
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class='border-t border-white/20 mt-12 pt-8 text-center text-white-100'>
+      <p>
+        &copy; {new Date().getFullYear()} Indian Wanderlust. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

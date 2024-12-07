@@ -1,0 +1,28 @@
+---
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import TourCard from '../../components/TourCard.astro';
+import { tours2 } from '../../constants';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-12'>
+      <Breadcrumbs items={[{ label: 'Tours', href: '/tours' }]} />
+
+      <h1
+        class='text-4xl md:text-5xl font-bold text-primary text-center mt-12 mb-8'
+      >
+        Discover Our Incredible Tours
+      </h1>
+      <p class='text-xl text-black-300 text-center mb-12 max-w-2xl mx-auto'>
+        Embark on unforgettable journeys across India with our carefully curated
+        tours, each offering a unique blend of experiences.
+      </p>
+
+      <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        {tours2.map((tour) => <TourCard tour={tour} />)}
+      </div>
+    </div>
+  </div>
+</Layout>
