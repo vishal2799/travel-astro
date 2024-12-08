@@ -1,0 +1,384 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import { tours2 } from '../../constants';
+
+// Get the route parameter
+// const { id } = Astro.params;
+
+// Find the tour based on the ID
+// const destination = tours2.find((dest) => dest.id.toString() === id);
+
+// Define the static paths
+export async function getStaticPaths() {
+  return tours2.map((dest) => ({
+    params: { id: dest.id.toString() },
+    props: { tour: dest },
+  }));
+}
+
+const { tour } = Astro.props;
+---
+
+<Layout>
+  <div class='min-h-screen bg-white-100'>
+    {/* Hero Section with Image Gallery */}
+    <div class='relative h-[600px]'>
+      <div class='relative h-full overflow-hidden'>
+        {
+          tour.tourImages.map((image, index) => (
+            <div
+              class='absolute inset-0 transition-opacity duration-500 opacity-0'
+              data-image-index={index}
+            >
+              <Image
+                src={image}
+                alt={`Tour image ${index + 1}`}
+                width={1200}
+                height={600}
+                class='object-cover w-full h-full'
+              />
+            </div>
+          ))
+        }
+        <div
+          class='absolute inset-0 bg-gradient-to-b from-black/30 to-black/60 pointer-events-none'
+        >
+          <div
+            class='container mx-auto px-4 h-full flex flex-col justify-end pb-16'
+          >
+            <h1 class='text-4xl md:text-6xl font-bold text-white mb-4'>
+              {tour.title}
+            </h1>
+            <div class='flex flex-wrap gap-6 text-white'>
+              <div class='flex items-center'>
+                <Icon name='clock' class='w-5 h-5 mr-2' />
+                <span>{tour.bestSeason}</span>
+              </div>
+              <div class='flex items-center'>
+                <Icon name='people' class='w-5 h-5 mr-2' />
+                <span>{tour.bestSeason}</span>
+              </div>
+              <div class='flex items-center'>
+                <Icon name='geo-alt' class='w-5 h-5 mr-2' />
+                <span>{tour.places}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          id='prevButton'
+          class='absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 transition-colors p-3 rounded-full text-white backdrop-blur-sm'
+          aria-label='Previous image'
+        >
+          <Icon name='chevron-right' class='w-6 h-6' />
+        </button>
+        <button
+          id='nextButton'
+          class='absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 transition-colors p-3 rounded-full text-white backdrop-blur-sm'
+          aria-label='Next image'
+        >
+          <Icon name='chevron-right' class='w-6 h-6' />
+        </button>
+        <div class='absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2'>
+          {
+            tour.tourImages.map((_, index) => (
+              <button
+                class='w-2 h-2 rounded-full bg-white/50 transition-colors'
+                data-indicator-index={index}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class='container mx-auto px-4 py-12'>
+      <div class='grid lg:grid-cols-3 gap-12'>
+        {/* Main Content */}
+        <div class='lg:col-span-2'>
+          {/* Overview */}
+          <section class='bg-white rounded-2xl p-8 shadow-lg mb-8'>
+            <h2 class='heading-2 mb-6'>Tour Overview</h2>
+            <p class='text-black-300 leading-relaxed mb-6'>
+              {tour.overview}
+            </p>
+            <div class='grid md:grid-cols-2 gap-6'>
+              {
+                [
+                  { icon: 'clock', text: 'Airport transfers included' },
+                  { icon: 'clock', text: '4-5 star accommodations' },
+                  { icon: 'clock', text: 'Daily breakfast included' },
+                  {
+                    icon: 'clock',
+                    text: 'Private air-conditioned vehicle',
+                  },
+                  { icon: 'clock', text: 'Guided sightseeing tours' },
+                  {
+                    icon: 'clock',
+                    text: 'Monument entrance fees included',
+                  },
+                ].map((feature, index) => (
+                  <div class='flex items-center space-x-3'>
+                    <div class='w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center'>
+                      <Icon name={feature.icon} class='w-5 h-5 text-primary' />
+                    </div>
+                    <span class='text-black-300'>{feature.text}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          {/* Itinerary */}
+          <section class='bg-white rounded-2xl p-8 shadow-lg mb-8'>
+            <h2 class='heading-2 mb-6'>Tour Itinerary</h2>
+            <div class='space-y-8'>
+              {
+                [
+                  {
+                    day: 'Day 1-2: Delhi',
+                    activities: [
+                      "Explore Old Delhi's Chandni Chowk and Jama Masjid",
+                      "Visit Humayun's Tomb and Qutub Minar",
+                      'Drive past India Gate and Presidential Palace',
+                      'Experience the modern Akshardham Temple',
+                    ],
+                  },
+                  {
+                    day: 'Day 3-4: Agra',
+                    activities: [
+                      'Witness the breathtaking Taj Mahal at sunrise',
+                      'Explore the impressive Agra Fort',
+                      'Visit the abandoned city of Fatehpur Sikri',
+                      'Optional: Mohabbat the Taj show in the evening',
+                    ],
+                  },
+                  {
+                    day: 'Day 5-6: Jaipur',
+                    activities: [
+                      'Ascend to the magnificent Amber Fort',
+                      'Explore the City Palace and Jantar Mantar observatory',
+                      'Photo stop at the iconic Hawa Mahal',
+                      'Optional: Elephant ride or hot air balloon experience',
+                    ],
+                  },
+                ].map((period) => (
+                  <div>
+                    <h3 class='text-xl font-semibold mb-4 text-black-200'>
+                      {period.day}
+                    </h3>
+                    <ul class='space-y-3'>
+                      {period.activities.map((activity) => (
+                        <li class='flex items-start'>
+                          <Icon
+                            name='check-circle'
+                            class='w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0'
+                          />
+                          <span class='text-black-300'>{activity}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          {/* Additional Information */}
+          <section class='bg-white rounded-2xl p-8 shadow-lg'>
+            <h2 class='heading-2 mb-6'>Important Information</h2>
+            <div class='space-y-4'>
+              {
+                [
+                  'Valid passport and visa required for entry to India',
+                  'Comfortable walking shoes recommended',
+                  'Dress modestly when visiting religious sites',
+                  'Travel insurance recommended',
+                  'Local currency (INR) or major credit cards accepted',
+                ].map((info) => (
+                  <div class='flex items-start'>
+                    <Icon
+                      name='check-circle'
+                      class='w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0'
+                    />
+                    <span class='text-black-300'>{info}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+        </div>
+
+        {/* Booking Form */}
+        <div class='lg:col-span-1'>
+          <div class='bg-white rounded-2xl p-6 shadow-lg sticky top-24'>
+            <h2 class='heading-2 mb-6'>Book This Tour</h2>
+            <form class='space-y-4'>
+              <div>
+                <label
+                  for='name'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Full Name
+                </label>
+                <input
+                  type='text'
+                  id='name'
+                  name='name'
+                  class='input'
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for='email'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Email
+                </label>
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  class='input'
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for='phone'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Phone Number
+                </label>
+                <input
+                  type='tel'
+                  id='phone'
+                  name='phone'
+                  class='input'
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for='date'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Preferred Date
+                </label>
+                <div class='relative'>
+                  <input
+                    type='date'
+                    id='date'
+                    name='date'
+                    class='input'
+                    required
+                  />
+                  <Icon
+                    name='calendar'
+                    class='absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black-300 pointer-events-none'
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  for='guests'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Number of Guests
+                </label>
+                <select id='guests' name='guests' class='input' required>
+                  {
+                    [1, 2, 3, 4, 5, 6].map((num) => (
+                      <option value={num}>
+                        {num} {num === 1 ? 'Guest' : 'Guests'}
+                      </option>
+                    ))
+                  }
+                </select>
+              </div>
+              <div>
+                <label
+                  for='message'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Special Requests
+                </label>
+                <textarea
+                  id='message'
+                  name='message'
+                  rows={4}
+                  class='input resize-none'></textarea>
+              </div>
+              <button type='submit' class='btn-primary w-full group'>
+                Request Booking
+                <Icon
+                  name='chevron-right'
+                  class='w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform'
+                />
+              </button>
+            </form>
+            <p class='text-sm text-black-300 mt-4 text-center'>
+              Our team will contact you within 24 hours to confirm availability
+              and process your booking.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Client-side JavaScript for image gallery functionality
+  const images = document.querySelectorAll('[data-image-index]');
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const indicators = document.querySelectorAll('[data-indicator-index]');
+  let currentIndex = 0;
+  const totalImages = images.length;
+
+  function showImage(index: number) {
+    images.forEach((image, i) => {
+      image.classList.toggle('opacity-100', i === index);
+      image.classList.toggle('opacity-0', i !== index);
+    });
+    indicators.forEach((indicator, i) => {
+      indicator.classList.toggle('bg-white', i === index);
+      indicator.classList.toggle('bg-white/50', i !== index);
+    });
+    currentIndex = index;
+  }
+
+  function nextImage() {
+    showImage((currentIndex + 1) % totalImages);
+  }
+
+  function prevImage() {
+    showImage((currentIndex - 1 + totalImages) % totalImages);
+  }
+
+  prevButton?.addEventListener('click', prevImage);
+  nextButton?.addEventListener('click', nextImage);
+
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => showImage(index));
+  });
+
+  // Initialize the first image
+  showImage(0);
+
+  // Optional: Auto-play functionality
+  // let intervalId = setInterval(nextImage, 5000);
+
+  // // Pause auto-play on mouse enter
+  // const galleryContainer = document.querySelector('.relative.h-[600px]');
+  // galleryContainer.addEventListener('mouseenter', () => clearInterval(intervalId));
+  // galleryContainer.addEventListener('mouseleave', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = setInterval(nextImage, 5000);
+  // });
+</script>
