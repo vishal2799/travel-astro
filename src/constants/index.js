@@ -421,3 +421,162 @@ export const services = [
       'Comprehensive travel insurance options to protect your trip within India, covering cancellations, medical emergencies, and more.',
   },
 ];
+
+export const tracks = [
+  {
+    id: 1,
+    title: 'Sacred India Pilgrimage',
+    description:
+      "Embark on a transformative journey through India's most revered spiritual sites",
+    image: '/tour11.jpg',
+    duration: '12 days',
+    groupSize: 'Max 16 people',
+    destinations: ['Varanasi', 'Rishikesh', 'Amritsar', 'Bodhgaya'],
+    highlights: [
+      'Ganga Aarti ceremony',
+      'Yoga in Rishikesh',
+      'Golden Temple visit',
+      'Mahabodhi Temple',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Himalayan Meditation Retreat',
+    description:
+      'Find inner peace and tranquility in the serene Himalayan mountains',
+    image: '/tour12.jpg',
+    duration: '10 days',
+    groupSize: 'Max 12 people',
+    destinations: ['Dharamshala', 'McLeod Ganj', 'Manali'],
+    highlights: [
+      'Tibetan Buddhism',
+      'Meditation sessions',
+      'Dalai Lama Temple',
+      'Nature walks',
+    ],
+  },
+  {
+    id: 3,
+    title: 'South India Temple Trail',
+    description:
+      "Discover the rich spiritual heritage of South India's magnificent temples",
+    image: '/tour13.jpg',
+    duration: '14 days',
+    groupSize: 'Max 14 people',
+    destinations: ['Madurai', 'Thanjavur', 'Mahabalipuram', 'Tirupati'],
+    highlights: [
+      'Meenakshi Temple',
+      'Brihadeeswara Temple',
+      'Shore Temple',
+      'Tirupati Balaji',
+    ],
+  },
+  {
+    id: 4,
+    title: 'Ayurvedic Wellness Journey',
+    description:
+      'Rejuvenate your body and soul with ancient Ayurvedic practices in Kerala',
+    image: '/tour14.jpg',
+    duration: '8 days',
+    groupSize: 'Max 10 people',
+    destinations: ['Kovalam', 'Varkala', 'Alleppey'],
+    highlights: [
+      'Ayurvedic treatments',
+      'Yoga sessions',
+      'Backwater cruise',
+      'Herbal gardens',
+    ],
+  },
+  {
+    id: 5,
+    title: 'Buddhist Circuit Expedition',
+    description:
+      'Follow in the footsteps of Buddha on this enlightening spiritual journey',
+    image: '/tour11.jpg',
+    duration: '11 days',
+    groupSize: 'Max 15 people',
+    destinations: ['Lumbini', 'Bodhgaya', 'Sarnath', 'Kushinagar'],
+    highlights: [
+      "Buddha's birthplace",
+      'Bodhi Tree',
+      'Dhamek Stupa',
+      'Mahaparinirvana Temple',
+    ],
+  },
+  {
+    id: 6,
+    title: 'Spiritual Rajasthan',
+    description:
+      'Experience the mystical and spiritual side of colorful Rajasthan',
+    image: '/tour11.jpg',
+    duration: '9 days',
+    groupSize: 'Max 12 people',
+    destinations: ['Pushkar', 'Ajmer', 'Ranakpur', 'Mount Abu'],
+    highlights: [
+      'Brahma Temple',
+      'Ajmer Sharif Dargah',
+      'Jain Temples',
+      'Sunset Point meditation',
+    ],
+  },
+];
+
+export const tours3 = [
+  {
+    id: 1,
+    title: 'Golden Triangle Tour',
+    description:
+      "Embark on a journey through India's Golden Triangle, exploring the iconic cities of Delhi, Agra, and Jaipur. Experience the rich history, stunning architecture, and vibrant culture of North India.",
+    images: ['/tour11.jpg', '/tour12.jpg', '/tour13.jpg', '/tour14.jpg'],
+    duration: '6 Days',
+    groupSize: 'Max 15 people',
+    destinations: ['Delhi', 'Agra', 'Jaipur'],
+    overview:
+      'Experience the rich history, stunning architecture, and vibrant culture of North India. From the bustling streets of Delhi to the majestic Taj Mahal in Agra and the pink city of Jaipur, this tour offers an unforgettable blend of experiences.',
+    features: [
+      { icon: 'Plane', text: 'Airport transfers included' },
+      { icon: 'Hotel', text: '4-5 star accommodations' },
+      { icon: 'Utensils', text: 'Daily breakfast included' },
+      { icon: 'Car', text: 'Private air-conditioned vehicle' },
+      { icon: 'Camera', text: 'Guided sightseeing tours' },
+      { icon: 'Mountain', text: 'Monument entrance fees included' },
+    ],
+    itinerary: [
+      {
+        day: 'Day 1-2: Delhi',
+        activities: [
+          "Explore Old Delhi's Chandni Chowk and Jama Masjid",
+          "Visit Humayun's Tomb and Qutub Minar",
+          'Drive past India Gate and Presidential Palace',
+          'Experience the modern Akshardham Temple',
+        ],
+      },
+      {
+        day: 'Day 3-4: Agra',
+        activities: [
+          'Witness the breathtaking Taj Mahal at sunrise',
+          'Explore the impressive Agra Fort',
+          'Visit the abandoned city of Fatehpur Sikri',
+          'Optional: Mohabbat the Taj show in the evening',
+        ],
+      },
+      {
+        day: 'Day 5-6: Jaipur',
+        activities: [
+          'Ascend to the magnificent Amber Fort',
+          'Explore the City Palace and Jantar Mantar observatory',
+          'Photo stop at the iconic Hawa Mahal',
+          'Optional: Elephant ride or hot air balloon experience',
+        ],
+      },
+    ],
+    importantInfo: [
+      'Valid passport and visa required for entry to India',
+      'Comfortable walking shoes recommended',
+      'Dress modestly when visiting religious sites',
+      'Travel insurance recommended',
+      'Local currency (INR) or major credit cards accepted',
+    ],
+  },
+  // Add more tour objects here...
+];

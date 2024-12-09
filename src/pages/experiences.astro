@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { tours3, tracks } from '../constants';
+import TourCard1 from '../components/TourCard1.astro';
+import TrackCard1 from '../components/TrackCard1.astro';
+
+const tabs = [
+  { id: 'tours', label: 'Tours' },
+  { id: 'tracks', label: 'Spiritual Tracks' },
+];
+---
+
+<Layout title='Tours & Spiritual Tracks | Indian Wanderlust'>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs items={[{ label: 'Experiences', href: '/experiences' }]} />
+
+      <div class='max-w-4xl mx-auto mt-12 mb-16'>
+        <h1
+          class='text-4xl md:text-5xl font-bold text-primary mb-6 text-center'
+        >
+          Discover Our Experiences
+        </h1>
+        <p class='text-xl text-black-300 text-center'>
+          Embark on unforgettable journeys across India with our carefully
+          curated tours and transformative spiritual tracks.
+        </p>
+      </div>
+
+      <Tabs tabs={tabs} activeTab='tours' />
+
+      <div class='grid gap-12'>
+        <div data-tab-content='tours'>
+          <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            {
+              tours3.map((tour) => (
+                <TourCard1
+                  id={tour.id}
+                  title={tour.title}
+                  description={tour.description}
+                  image={tour.images[0]}
+                  duration={tour.duration}
+                  groupSize={tour.groupSize}
+                  destinations={tour.destinations}
+                />
+              ))
+            }
+          </div>
+        </div>
+
+        <div data-tab-content='tracks' class='hidden'>
+          {
+            tracks.map((track) => (
+              <TrackCard1
+                id={track.id}
+                title={track.title}
+                description={track.description}
+                image={track.image}
+                duration={track.duration}
+                groupSize={track.groupSize}
+                destinations={track.destinations}
+                highlights={track.highlights}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

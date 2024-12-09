@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+export interface TourCardProps {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  duration: string;
+  groupSize: string;
+  destinations: string[];
+}
+
+const { id, title, description, image, duration, groupSize, destinations } =
+  Astro.props;
+---
+
+<div
+  class='bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col'
+>
+  <div class='relative h-[250px] overflow-hidden'>
+    <Image
+      src={image}
+      alt={title}
+      width={600}
+      height={400}
+      class='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+    />
+    <div
+      class='absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300'
+    >
+    </div>
+    <div class='absolute bottom-4 left-4 right-4'>
+      <h3 class='text-2xl font-bold text-white mb-2'>{title}</h3>
+      <span
+        class='inline-block bg-secondary text-black text-xs font-semibold px-2 py-1 rounded-full'
+      >
+        Cultural & Historical
+      </span>
+    </div>
+  </div>
+  <div class='p-6 flex flex-col flex-grow'>
+    <p class='text-black-300 mb-4 line-clamp-3'>{description}</p>
+    <div class='flex items-center justify-between text-sm text-black-300 mb-4'>
+      <div class='flex items-center'>
+        <Icon name='clock' class='w-4 h-4 mr-2 text-primary' />
+        <span>{duration}</span>
+      </div>
+      <div class='flex items-center'>
+        <Icon name='people' class='w-4 h-4 mr-2 text-primary' />
+        <span>{groupSize}</span>
+      </div>
+    </div>
+    <div class='mb-4'>
+      <h4 class='text-sm font-semibold text-black-200 mb-2'>Destinations:</h4>
+      <div class='flex flex-wrap gap-2'>
+        {
+          destinations.map((destination: any) => (
+            <span class='inline-block bg-primary-100 text-primary text-xs font-semibold px-2 py-1 rounded-full'>
+              {destination}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+    <a
+      href={`/tour/${id}`}
+      class='btn-primary text-white text-center group mt-auto flex items-center justify-center px-6 py-2 rounded-lg hover:bg-primary-100 hover:text-primary transition-colors duration-300'
+    >
+      Explore Tour
+      <Icon
+        name='wind'
+        class='w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1'
+      />
+    </a>
+  </div>
+</div>
