@@ -1,0 +1,50 @@
+---
+import { Icon } from 'astro-icon/components';
+import Image from 'astro/components/Image.astro';
+
+const { tour } = Astro.props;
+---
+
+<div class='card group'>
+  <div class='relative h-[250px] overflow-hidden'>
+    <Image
+      src={tour.image}
+      alt={tour.title}
+      width={600}
+      height={400}
+      class='object-cover transition-transform duration-500 group-hover:scale-110'
+    />
+  </div>
+  <div class='p-6'>
+    <h3 class='heading-3 mb-2'>{tour.title}</h3>
+    <p class='text-black-300 mb-4'>{tour.description}</p>
+    <div class='space-y-2 mb-4'>
+      <div class='flex items-center text-black-300'>
+        <Icon name='calendar' class='w-4 h-4 mr-2' />
+        <span>{tour.tourType}</span>
+      </div>
+      <div class='flex items-center text-black-300'>
+        <Icon name='map' class='w-4 h-4 mr-2' />
+        <span>{tour.bestSeason}</span>
+      </div>
+    </div>
+    <div class='border-t pt-4'>
+      <h4 class='font-semibold mb-2 text-black-200'>Highlights:</h4>
+      <div class='flex flex-wrap gap-2'>
+        {
+          tour.highlights.map((highlight: unknown) => (
+            <span class='bg-primary-100 text-primary px-2 py-1 rounded-full text-sm'>
+              {highlight}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+    <a
+      href={`/tour/${tour.title.toLowerCase().replace(/\s+/g, '-')}`}
+      class='btn-primary mt-4 w-full block text-center'
+    >
+      View Tour
+    </a>
+  </div>
+</div>
