@@ -1,10 +1,504 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import HeroHomeSlider from '../components/HeroHomeSlider.astro';
+import Testimonials from '../components/Testimonials.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const heroSlides = [
+  {
+    image: '/hero1.jpg',
+    title: 'Discover the Magic of India',
+    subtitle: 'Let us plan your perfect Indian journey',
+  },
+  {
+    image: '/hero2.jpg',
+    title: 'Experience Incredible India',
+    subtitle: 'Unforgettable adventures await in the land of diversity',
+  },
+  {
+    image: '/hero3.jpg',
+    title: 'Create Lasting Memories',
+    subtitle: 'Your Indian odyssey begins here',
+  },
+];
+
+const testimonials = [
+  {
+    name: 'Priya Sharma',
+    location: 'Mumbai, India',
+    rating: 5,
+    image: '/tour11.jpg',
+    text: 'Our trip to Rajasthan was absolutely perfect! The attention to detail and personalized service made our journey unforgettable. Every hotel and activity was carefully selected to match our preferences.',
+    tour: 'Royal Rajasthan',
+  },
+  {
+    name: 'John Smith',
+    location: 'London, UK',
+    rating: 5,
+    image: '/tour11.jpg',
+    text: 'The team went above and beyond to ensure our family vacation in Kerala was smooth and enjoyable. Their local knowledge and connections made all the difference in experiencing authentic Indian culture.',
+    tour: 'Kerala Backwaters',
+  },
+  {
+    name: 'Akira Tanaka',
+    location: 'Tokyo, Japan',
+    rating: 5,
+    image: '/tour11.jpg',
+    text: "From planning to execution, everything was handled professionally. The 24/7 support during our trip gave us peace of mind, and the customized itinerary perfectly matched our interests in exploring India's spiritual sites.",
+    tour: 'Spiritual India',
+  },
+  {
+    name: 'Sarah Johnson',
+    location: 'New York, USA',
+    rating: 5,
+    image: '/tour11.jpg',
+    text: 'An incredible experience from start to finish. The personalized itinerary perfectly balanced adventure and relaxation. Every detail of our Golden Triangle tour was thoughtfully planned and executed.',
+    tour: 'Golden Triangle',
+  },
+  {
+    name: 'Raj Patel',
+    location: 'Toronto, Canada',
+    rating: 5,
+    image: '/tour11.jpg',
+    text: 'Exceptional service and attention to detail. Our family trip to Goa exceeded all expectations. The guides were knowledgeable and the accommodations were stunning.',
+    tour: 'Goa Beach Retreat',
+  },
+];
+
+const blogPosts = [
+  {
+    id: 1,
+    title: '10 Hidden Gems in India',
+    excerpt:
+      'Discover lesser-known destinations that will take your breath away...',
+    image: '/tour11.jpg',
+    author: 'Anjali Desai',
+    date: 'May 15, 2023',
+    category: 'Destinations',
+    readTime: '5 min read',
+  },
+  {
+    id: 2,
+    title: "A Foodie's Guide to Indian Cuisine",
+    excerpt: 'Explore the diverse flavors and culinary traditions of India...',
+    image: '/tour11.jpg',
+    author: 'Rahul Kapoor',
+    date: 'June 2, 2023',
+    category: 'Food & Culture',
+    readTime: '7 min read',
+  },
+  {
+    id: 3,
+    title: 'Sustainable Travel in India: Eco-Friendly Tips',
+    excerpt:
+      'Discover how to explore India while minimizing your environmental impact...',
+    image: '/tour11.jpg',
+    author: 'Meera Gupta',
+    date: 'June 20, 2023',
+    category: 'Sustainable Travel',
+    readTime: '6 min read',
+  },
+];
 ---
 
 <Layout>
-  <h1>Hello</h1>
+  <main class='flex-1'>
+    {/* Hero Section */}
+    <HeroHomeSlider />
+
+    {/* Services Section */}
+    <section id='services' class='section-padding bg-white-100'>
+      <div class='container mx-auto container-padding'>
+        <div class='max-w-3xl mx-auto text-center mb-16'>
+          <h2 class='heading-2 mb-4'>Our Services</h2>
+          <p class='subheading'>
+            Experience seamless travel planning for your Indian adventure
+          </p>
+        </div>
+        <div class='grid md:grid-cols-3 gap-8 max-w-5xl mx-auto'>
+          {
+            [
+              {
+                icon: 'geo-alt',
+                title: 'Custom India Tours',
+                description:
+                  'Personalized itineraries tailored to your preferences, budget, and travel style across India.',
+              },
+              {
+                icon: 'envelope',
+                title: 'Expert Local Guidance',
+                description:
+                  'Professional advice from experienced Indian travel consultants who know every corner of the country.',
+              },
+              {
+                icon: 'telephone',
+                title: '24/7 On-Trip Support',
+                description:
+                  'Round-the-clock assistance throughout your journey in India for peace of mind.',
+              },
+            ].map((service) => (
+              <div class='card p-8 hover:shadow-xl transition-shadow'>
+                <div class='w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6'>
+                  <Icon name={service.icon} class='w-7 h-7 text-primary' />
+                </div>
+                <h3 class='heading-3 mb-3'>{service.title}</h3>
+                <p class='text-black-300 leading-relaxed'>
+                  {service.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* Featured Destinations */}
+    <section id='destinations' class='section-padding'>
+      <div class='container mx-auto container-padding'>
+        <div class='max-w-3xl mx-auto text-center mb-16'>
+          <h2 class='heading-2 mb-4'>Popular Indian Destinations</h2>
+          <p class='subheading'>
+            Discover our hand-picked selection of incredible locations across
+            India
+          </p>
+        </div>
+        <div class='grid md:grid-cols-3 gap-8'>
+          {
+            [
+              {
+                name: 'Rajasthan',
+                image: '/tour11.jpg',
+                description: 'Land of Kings and Palaces',
+              },
+              {
+                name: 'Kerala',
+                image: '/tour11.jpg',
+                description: "God's Own Country",
+              },
+              {
+                name: 'Goa',
+                image: '/tour11.jpg',
+                description: 'Beach Paradise',
+              },
+            ].map((destination) => (
+              <div class='group relative overflow-hidden rounded-2xl shadow-lg'>
+                <Image
+                  src={destination.image}
+                  alt={destination.name}
+                  width={600}
+                  height={400}
+                  class='w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110'
+                />
+                <div class='absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end'>
+                  <div class='p-8'>
+                    <h3 class='text-2xl font-bold text-white mb-2'>
+                      {destination.name}
+                    </h3>
+                    <p class='text-white-100'>{destination.description}</p>
+                    <a
+                      href={`/destination/${destination.name.toLowerCase()}`}
+                      class='btn-primary mt-4'
+                    >
+                      Explore
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div class='text-center mt-12'>
+          <a href='/destinations' class='btn-primary'>
+            View All Destinations
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Tours Section */}
+    <section class='section-padding bg-white-100'>
+      <div class='container mx-auto container-padding'>
+        <div class='max-w-3xl mx-auto text-center mb-16'>
+          <h2 class='heading-2 mb-4'>Featured Tours</h2>
+          <p class='subheading'>
+            Carefully curated experiences for unforgettable journeys across
+            India
+          </p>
+        </div>
+        <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {
+            [
+              {
+                title: 'Golden Triangle Tour',
+                image: '/tour11.jpg',
+                duration: '6 Days',
+                groupSize: 'Max 12 people',
+                description:
+                  'Explore the iconic cities of Delhi, Agra, and Jaipur on this classic Indian journey.',
+                highlights: ['Taj Mahal', 'Amber Fort', 'Qutub Minar'],
+              },
+              {
+                title: 'Kerala Backwaters Cruise',
+                image: '/tour11.jpg',
+                duration: '5 Days',
+                groupSize: 'Max 10 people',
+                description:
+                  "Experience the serene beauty of Kerala's backwaters on a traditional houseboat.",
+                highlights: ['Alleppey', 'Kumarakom', 'Kochi'],
+              },
+              {
+                title: 'Himalayan Adventure',
+                image: '/tour11.jpg',
+                duration: '8 Days',
+                groupSize: 'Max 8 people',
+                description:
+                  'Trek through the breathtaking landscapes of the Indian Himalayas in Ladakh.',
+                highlights: ['Leh Palace', 'Pangong Lake', 'Nubra Valley'],
+              },
+            ].map((tour) => (
+              <div class='card group'>
+                <div class='relative h-[250px] overflow-hidden'>
+                  <Image
+                    src={tour.image}
+                    alt={tour.title}
+                    width={600}
+                    height={400}
+                    class='object-cover transition-transform duration-500 group-hover:scale-110'
+                  />
+                </div>
+                <div class='p-6'>
+                  <h3 class='heading-3 mb-2'>{tour.title}</h3>
+                  <p class='text-black-300 mb-4'>{tour.description}</p>
+                  <div class='space-y-2 mb-4'>
+                    <div class='flex items-center text-black-300'>
+                      <Icon name='clock' class='w-4 h-4 mr-2' />
+                      <span>{tour.duration}</span>
+                    </div>
+                    <div class='flex items-center text-black-300'>
+                      <Icon name='people' class='w-4 h-4 mr-2' />
+                      <span>{tour.groupSize}</span>
+                    </div>
+                  </div>
+                  <div class='border-t pt-4'>
+                    <h4 class='font-semibold mb-2 text-black-200'>
+                      Highlights:
+                    </h4>
+                    <div class='flex flex-wrap gap-2'>
+                      {tour.highlights.map((highlight) => (
+                        <span class='bg-primary-100 text-primary px-2 py-1 rounded-full text-sm'>
+                          {highlight}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <a
+                    href={`/tour/${tour.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    class='btn-primary mt-4 w-full block text-center'
+                  >
+                    View Tour
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div class='text-center mt-12'>
+          <a href='/tours' class='btn-primary'> View All Tours </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Blog Section */}
+    <section class='section-padding bg-white-100'>
+      <div class='container mx-auto container-padding'>
+        <div class='max-w-3xl mx-auto text-center mb-16'>
+          <h2 class='heading-2 mb-4'>Latest from Our Blog</h2>
+          <p class='subheading'>
+            Discover travel tips, inspiration, and insider knowledge about India
+            from our expert team
+          </p>
+        </div>
+        <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {
+            blogPosts.map((post) => (
+              <article class='bg-white rounded-lg overflow-hidden shadow-md group'>
+                <div class='relative h-48 overflow-hidden'>
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    width={600}
+                    height={400}
+                    class='object-cover transition-transform duration-300 group-hover:scale-105'
+                  />
+                </div>
+                <div class='p-6'>
+                  <span class='inline-block bg-primary-100 text-primary text-xs px-2 py-1 rounded-full mb-2'>
+                    {post.category}
+                  </span>
+                  <h3 class='text-xl font-bold mb-2'>
+                    <a
+                      href={`/blog/${post.id}`}
+                      class='hover:text-primary transition-colors'
+                    >
+                      {post.title}
+                    </a>
+                  </h3>
+                  <p class='text-black-300 mb-4'>{post.excerpt}</p>
+                  <div class='flex items-center justify-between text-sm text-black-300'>
+                    <div class='flex items-center'>
+                      <Icon name='people' class='w-4 h-4 mr-2' />
+                      <span>{post.author}</span>
+                    </div>
+                    <div class='flex items-center'>
+                      <Icon name='clock' class='w-4 h-4 mr-2' />
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+        <div class='text-center mt-12'>
+          <a href='/blog' class='btn-primary'> View All Posts </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Quote Form */}
+    <section id='quote' class='section-padding bg-white'>
+      <div class='container mx-auto container-padding'>
+        <div class='max-w-3xl mx-auto'>
+          <div class='text-center mb-12'>
+            <h2 class='heading-2 mb-4'>Get a Free Quote</h2>
+            <p class='subheading'>
+              Let us help you plan your perfect Indian journey
+            </p>
+          </div>
+          <form class='space-y-6 bg-white p-8 rounded-2xl shadow-lg'>
+            <div class='grid md:grid-cols-2 gap-6'>
+              <div>
+                <label
+                  for='name'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Name
+                </label>
+                <input
+                  type='text'
+                  id='name'
+                  name='name'
+                  class='input'
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for='email'
+                  class='block text-sm font-medium text-black-200 mb-1'
+                >
+                  Email
+                </label>
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  class='input'
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                for='destination'
+                class='block text-sm font-medium text-black-200 mb-1'
+              >
+                Preferred Destination
+              </label>
+              <input
+                type='text'
+                id='destination'
+                name='destination'
+                class='input'
+                required
+              />
+            </div>
+            <div>
+              <label
+                for='message'
+                class='block text-sm font-medium text-black-200 mb-1'
+              >
+                Additional Details
+              </label>
+              <textarea
+                id='message'
+                name='message'
+                rows={4}
+                class='input resize-none'
+                required></textarea>
+            </div>
+            <button type='submit' class='btn-primary w-full group'>
+              Request Quote
+              <Icon
+                name='chevron-right'
+                class='w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform'
+              />
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    {/* Testimonials Section */}
+    <section class='section-padding bg-white-100'>
+      <div class='container mx-auto container-padding'>
+        <div class='max-w-3xl mx-auto text-center mb-16'>
+          <h2 class='heading-2 mb-4'>What Our Clients Say</h2>
+          <p class='subheading'>
+            Real experiences from our satisfied travelers in India
+          </p>
+        </div>
+        <Testimonials />
+      </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  .container-padding {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .heading-1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary;
+  }
+
+  .heading-2 {
+    @apply text-3xl md:text-4xl font-bold text-primary;
+  }
+
+  .heading-3 {
+    @apply text-2xl md:text-3xl font-semibold text-primary;
+  }
+
+  .subheading {
+    @apply text-xl text-black-300;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-md transition-all duration-300 text-sm font-medium bg-primary text-white hover:bg-primary-100 hover:text-primary;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 rounded-md border border-black-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300;
+  }
+</style>

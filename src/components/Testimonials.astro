@@ -1,0 +1,185 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+const testimonials = [
+  {
+    name: 'Priya Sharma',
+    location: 'Mumbai, India',
+    rating: 5,
+    image: '/placeholder.svg?height=100&width=100',
+    text: 'Our trip to Rajasthan was absolutely perfect! The attention to detail and personalized service made our journey unforgettable. Every hotel and activity was carefully selected to match our preferences.',
+    tour: 'Royal Rajasthan',
+  },
+  {
+    name: 'John Smith',
+    location: 'London, UK',
+    rating: 5,
+    image: '/placeholder.svg?height=100&width=100',
+    text: 'The team went above and beyond to ensure our family vacation in Kerala was smooth and enjoyable. Their local knowledge and connections made all the difference in experiencing authentic Indian culture.',
+    tour: 'Kerala Backwaters',
+  },
+  {
+    name: 'Akira Tanaka',
+    location: 'Tokyo, Japan',
+    rating: 5,
+    image: '/placeholder.svg?height=100&width=100',
+    text: "From planning to execution, everything was handled professionally. The 24/7 support during our trip gave us peace of mind, and the customized itinerary perfectly matched our interests in exploring India's spiritual sites.",
+    tour: 'Spiritual India',
+  },
+  {
+    name: 'Sarah Johnson',
+    location: 'New York, USA',
+    rating: 5,
+    image: '/placeholder.svg?height=100&width=100',
+    text: 'An incredible experience from start to finish. The personalized itinerary perfectly balanced adventure and relaxation. Every detail of our Golden Triangle tour was thoughtfully planned and executed.',
+    tour: 'Golden Triangle',
+  },
+  {
+    name: 'Raj Patel',
+    location: 'Toronto, Canada',
+    rating: 5,
+    image: '/placeholder.svg?height=100&width=100',
+    text: 'Exceptional service and attention to detail. Our family trip to Goa exceeded all expectations. The guides were knowledgeable and the accommodations were stunning.',
+    tour: 'Goa Beach Retreat',
+  },
+];
+---
+
+<div class='relative max-w-5xl mx-auto'>
+  <div class='overflow-hidden'>
+    <div
+      id='testimonialSlider'
+      class='flex transition-transform duration-500 ease-in-out'
+    >
+      {
+        testimonials.map((testimonial, index) => (
+          <div class='w-full flex-shrink-0 px-4'>
+            <div class='bg-white rounded-xl p-8 md:p-10 shadow-lg relative mx-auto max-w-2xl'>
+              <Icon
+                name='clock'
+                class='absolute top-6 right-6 w-12 h-12 text-primary-100'
+              />
+              <div class='flex items-center mb-6'>
+                <div class='relative w-20 h-20 md:w-24 md:h-24'>
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={96}
+                    height={96}
+                    class='rounded-full object-cover'
+                  />
+                </div>
+                <div class='ml-4'>
+                  <h3 class='text-xl font-semibold text-black-200'>
+                    {testimonial.name}
+                  </h3>
+                  <p class='text-black-300'>{testimonial.location}</p>
+                </div>
+              </div>
+              <div class='flex mb-4'>
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Icon
+                    name='clock'
+                    class='w-5 h-5 text-secondary fill-current'
+                  />
+                ))}
+              </div>
+              <p class='text-black-300 text-lg mb-4 italic leading-relaxed'>
+                "{testimonial.text}"
+              </p>
+              <div class='text-primary font-medium flex items-center'>
+                <Icon name='clock' class='w-4 h-4 mr-2' />
+                Tour: {testimonial.tour}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <button
+    id='testimonialSliderPrev'
+    class='absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-3 rounded-full shadow-lg text-primary hover:text-primary-100 hover:shadow-xl transition-all'
+    aria-label='Previous testimonial'
+  >
+    <Icon name='clock' class='w-6 h-6' />
+  </button>
+
+  <button
+    id='testimonialSliderNext'
+    class='absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-3 rounded-full shadow-lg text-primary hover:text-primary-100 hover:shadow-xl transition-all'
+    aria-label='Next testimonial'
+  >
+    <Icon name='clock' class='w-6 h-6' />
+  </button>
+
+  <div class='flex justify-center space-x-3 mt-8'>
+    {
+      testimonials.map((_, index) => (
+        <button
+          data-testimonial-indicator={index}
+          class='w-3 h-3 rounded-full transition-colors bg-primary-100'
+          aria-label={`Go to testimonial ${index + 1}`}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const testimonialSlider = document.getElementById('testimonialSlider');
+  const testimonialPrevButton = document.getElementById(
+    'testimonialSliderPrev'
+  );
+  const testimonialNextButton = document.getElementById(
+    'testimonialSliderNext'
+  );
+  const testimonialIndicators = document.querySelectorAll(
+    '[data-testimonial-indicator]'
+  );
+  let currentTestimonialSlide = 0;
+  const totalSlides = testimonialIndicators.length;
+
+  function showTestimonialSlide(index: number) {
+    testimonialSlider!.style.transform = `translateX(-${index * 100}%)`;
+    testimonialIndicators.forEach((indicator, i) => {
+      indicator.classList.toggle('bg-primary', i === index);
+      indicator.classList.toggle('bg-primary-100', i !== index);
+    });
+    currentTestimonialSlide = index;
+  }
+
+  function nextTestimonialSlide() {
+    showTestimonialSlide((currentTestimonialSlide + 1) % totalSlides);
+  }
+
+  function prevTestimonialSlide() {
+    showTestimonialSlide(
+      (currentTestimonialSlide - 1 + totalSlides) % totalSlides
+    );
+  }
+
+  testimonialPrevButton?.addEventListener('click', prevTestimonialSlide);
+  testimonialNextButton?.addEventListener('click', nextTestimonialSlide);
+
+  testimonialIndicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => showTestimonialSlide(index));
+  });
+
+  // Initialize first slide
+  showTestimonialSlide(0);
+
+  // Auto-advance slides
+  let intervalId = setInterval(nextTestimonialSlide, 6000);
+
+  // Pause auto-advance on mouse enter
+  testimonialSlider?.addEventListener('mouseenter', () =>
+    clearInterval(intervalId)
+  );
+  testimonialSlider?.addEventListener('mouseleave', () => {
+    clearInterval(intervalId);
+    intervalId = setInterval(nextTestimonialSlide, 6000);
+  });
+</script>
