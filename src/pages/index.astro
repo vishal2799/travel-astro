@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components';
 import HeroHomeSlider from '../components/HeroHomeSlider.astro';
 import Testimonials from '../components/Testimonials.astro';
 import DestinationHomeCard from '../components/DestinationHomeCard.astro';
-import { destinations, tours2 } from '../constants';
+import { blogs, destinations, tours2 } from '../constants';
 import TourHomeCard from '../components/TourHomeCard.astro';
 import BlogHomeCard from '../components/BlogHomeCard.astro';
 
@@ -153,7 +153,7 @@ const blogPosts = [
           </p>
         </div>
         <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {blogPosts.map((post) => <BlogHomeCard post={post} />)}
+          {blogs.map((post) => <BlogHomeCard post={post} />)}
         </div>
         <div class='text-center mt-12'>
           <a href='/blog' class='btn-primary'> View All Posts </a>

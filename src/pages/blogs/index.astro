@@ -3,75 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import BlogCard from '../../components/BlogCard.astro';
-
-const blogPosts = [
-  {
-    id: 1,
-    title: '10 Hidden Gems in Rajasthan',
-    excerpt:
-      'Discover lesser-known destinations in the Land of Kings that will take your breath away and provide unforgettable experiences off the beaten path.',
-    image: '/tour11.jpg',
-    author: 'Priya Sharma',
-    date: 'May 15, 2023',
-    category: 'Destinations',
-    readTime: '5 min read',
-  },
-  {
-    id: 2,
-    title: 'The Ultimate Guide to Indian Street Food',
-    excerpt:
-      "Embark on a culinary journey through India's vibrant street food scene. Learn about must-try dishes and where to find them.",
-    image: '/tour12.jpg',
-    author: 'Rahul Kapoor',
-    date: 'June 2, 2023',
-    category: 'Food & Culture',
-    readTime: '7 min read',
-  },
-  {
-    id: 3,
-    title: 'Eco-Friendly Travel in India: Reducing Your Carbon Footprint',
-    excerpt:
-      'Explore sustainable travel options in India and make a positive impact on the environment while still enjoying amazing adventures.',
-    image: '/tour13.jpg',
-    author: 'Anjali Desai',
-    date: 'June 20, 2023',
-    category: 'Sustainable Travel',
-    readTime: '6 min read',
-  },
-  {
-    id: 4,
-    title: "Spiritual Journey: Exploring India's Sacred Sites",
-    excerpt:
-      "Embark on a transformative journey through India's most revered spiritual destinations, from Varanasi to Rishikesh.",
-    image: '/tour14.jpg',
-    author: 'Arjun Mehta',
-    date: 'July 5, 2023',
-    category: 'Spiritual Travel',
-    readTime: '8 min read',
-  },
-  {
-    id: 5,
-    title: "Photography Tips for Capturing India's Vibrant Colors",
-    excerpt:
-      "Learn how to take stunning photos that truly capture the essence of India's colorful landscapes, festivals, and people.",
-    image: '/tour11.jpg',
-    author: 'Neha Gupta',
-    date: 'July 18, 2023',
-    category: 'Photography',
-    readTime: '5 min read',
-  },
-  {
-    id: 6,
-    title: 'Solo Female Travel in India: Tips and Experiences',
-    excerpt:
-      'Discover the joys and challenges of solo female travel in India. Gain confidence and create unforgettable memories.',
-    image: '/tour12.jpg',
-    author: 'Meera Patel',
-    date: 'August 1, 2023',
-    category: 'Solo Travel',
-    readTime: '7 min read',
-  },
-];
+import { blogs } from '../../constants';
 ---
 
 <Layout>
@@ -88,7 +20,7 @@ const blogPosts = [
       </div>
 
       <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-        {blogPosts.map((post) => <BlogCard post={post} />)}
+        {blogs.map((post) => <BlogCard post={post} />)}
       </div>
     </div>
   </div>

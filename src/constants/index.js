@@ -615,3 +615,71 @@ export const blogs = [
     tags: ['Rajasthan', 'Hidden Gems', 'Adventure', 'Culture', 'History'],
   },
 ];
+
+export const tracks2 = [
+  {
+    id: 1,
+    title: 'Sacred India Pilgrimage',
+    description:
+      "Embark on a transformative journey through India's most revered spiritual sites. This pilgrimage will take you to ancient temples, serene ashrams, and holy rivers, allowing you to experience the profound spirituality that has drawn seekers to India for millennia.",
+    image: '/tour11.jpg',
+    duration: '12 days',
+    groupSize: 'Max 16 people',
+    destinations: ['Varanasi', 'Rishikesh', 'Amritsar', 'Bodhgaya'],
+    highlights: [
+      'Witness the sacred Ganga Aarti ceremony in Varanasi',
+      "Practice yoga and meditation in Rishikesh, the world's yoga capital",
+      'Experience the divine atmosphere of the Golden Temple in Amritsar',
+      'Visit the Mahabodhi Temple, where Buddha attained enlightenment',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Varanasi',
+        description:
+          'Welcome to the spiritual heart of India. Transfer to your hotel and attend an evening Ganga Aarti ceremony.',
+      },
+      {
+        day: 2,
+        title: 'Varanasi Exploration',
+        description:
+          'Early morning boat ride on the Ganges, visit to Kashi Vishwanath Temple, and walking tour of the old city.',
+      },
+      {
+        day: 3,
+        title: 'Varanasi to Bodhgaya',
+        description:
+          'Travel to Bodhgaya, visit the Mahabodhi Temple and meditate under the Bodhi Tree.',
+      },
+      {
+        day: 4,
+        title: 'Bodhgaya to Rishikesh',
+        description:
+          'Fly to Dehradun and transfer to Rishikesh. Evening walk along the Ganges and attend a welcome ceremony at an ashram.',
+      },
+      {
+        day: 5,
+        title: 'Rishikesh Retreat',
+        description:
+          'Full day of yoga, meditation, and spiritual discourses at the ashram.',
+      },
+      // ... more days would be listed here
+    ],
+    included: [
+      '11 nights accommodation in spiritual retreats and heritage hotels',
+      'Daily vegetarian meals',
+      'All transportation including internal flights',
+      'Expert spiritual guides and yoga instructors',
+      'Entrance fees to all temples and sacred sites',
+      'Participation in rituals and ceremonies',
+      'Yoga and meditation sessions',
+    ],
+    notIncluded: [
+      'International flights',
+      'Visa fees',
+      'Travel insurance',
+      'Personal expenses and donations at temples',
+      'Optional activities not mentioned in the itinerary',
+    ],
+  },
+];

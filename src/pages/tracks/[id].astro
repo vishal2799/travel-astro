@@ -1,0 +1,169 @@
+---
+import { Image } from 'astro:assets';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { tracks2 } from '../../constants';
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return tracks2.map((track) => ({
+    params: { id: track.id.toString() },
+    props: { track: track },
+  }));
+}
+
+const { track } = Astro.props;
+---
+
+<Layout>
+  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs
+        items={[
+          { label: 'Spiritual Tracks', href: '/tracks' },
+          { label: track.title, href: `/tracks/${track.id}` },
+        ]}
+      />
+
+      <div class='mt-8 mb-12'>
+        <h1 class='text-4xl md:text-5xl font-bold text-primary mb-4'>
+          {track.title}
+        </h1>
+        <p class='text-xl text-black-300'>{track.description}</p>
+      </div>
+
+      <div class='bg-white rounded-3xl overflow-hidden shadow-xl mb-12'>
+        <div class='relative h-[400px] md:h-[500px]'>
+          <img
+            src={track.image}
+            alt={track.title}
+            class='absolute inset-0 w-full h-full object-cover'
+          />
+          <div
+            class='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end'
+          >
+            <div class='container mx-auto px-4 py-8'>
+              <div class='flex flex-wrap gap-6 text-white'>
+                <div class='flex items-center'>
+                  <Icon name='clock' class='w-6 h-6 mr-2' />
+                  <span class='text-lg'>{track.duration}</span>
+                </div>
+                <div class='flex items-center'>
+                  <Icon name='people' class='w-6 h-6 mr-2' />
+                  <span class='text-lg'>{track.groupSize}</span>
+                </div>
+                <div class='flex items-center'>
+                  <Icon name='geo-alt' class='w-6 h-6 mr-2' />
+                  <span class='text-lg'>
+                    {track.destinations.join(', ')}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='p-8 bg-white'>
+          <h2 class='text-2xl font-bold text-primary mb-4'>
+            Spiritual Highlights
+          </h2>
+          <ul class='grid md:grid-cols-2 gap-4'>
+            {
+              track.highlights.map((highlight, index) => (
+                <li class='flex items-start'>
+                  <Icon
+                    name='tree'
+                    class='w-5 h-5 text-secondary mr-3 mt-1 flex-shrink-0'
+                  />
+                  <span class='text-black-300'>{highlight}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class='bg-white rounded-3xl overflow-hidden shadow-xl mb-12'>
+        <div class='p-8'>
+          <h2 class='text-2xl font-bold text-primary mb-6'>Sacred Journey</h2>
+          <div class='space-y-8'>
+            {
+              track.itinerary.map((day) => (
+                <div class='flex'>
+                  <div class='mr-6 relative'>
+                    <div class='w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center text-primary font-bold'>
+                      Day {day.day}
+                    </div>
+                    {day.day !== track.itinerary.length && (
+                      <div class='absolute top-12 bottom-0 left-1/2 w-0.5 bg-primary-100' />
+                    )}
+                  </div>
+                  <div>
+                    <h3 class='text-xl font-semibold text-black-200 mb-2'>
+                      {day.title}
+                    </h3>
+                    <p class='text-black-300'>{day.description}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class='grid md:grid-cols-2 gap-8 mb-12'>
+        <div class='bg-white rounded-3xl overflow-hidden shadow-xl p-8'>
+          <h2 class='text-2xl font-bold text-primary mb-4'>
+            What&apos;s Included
+          </h2>
+          <ul class='space-y-2'>
+            {
+              track.included.map((item, index) => (
+                <li class='flex items-start'>
+                  <Icon
+                    name='sun'
+                    class='w-5 h-5 text-secondary mr-2 mt-1 flex-shrink-0'
+                  />
+                  <span class='text-black-300'>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class='bg-white rounded-3xl overflow-hidden shadow-xl p-8'>
+          <h2 class='text-2xl font-bold text-primary mb-4'>
+            What&apos;s Not Included
+          </h2>
+          <ul class='space-y-2'>
+            {
+              track.notIncluded.map((item, index) => (
+                <li class='flex items-start'>
+                  <Icon
+                    name='moon'
+                    class='w-5 h-5 text-secondary mr-2 mt-1 flex-shrink-0'
+                  />
+                  <span class='text-black-300'>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class='bg-primary text-white rounded-3xl p-8 text-center'>
+        <h2 class='text-3xl font-bold mb-4'>Begin Your Spiritual Journey</h2>
+        <p class='text-xl mb-8'>
+          Embark on this sacred pilgrimage and discover the depths of
+          India&apos;s spiritual heritage.
+        </p>
+        <a
+          href='/quote'
+          class='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-primary-100 transition duration-150 ease-in-out'
+        >
+          Request a Spiritual Journey
+          <Icon name='wind' class='ml-2 -mr-1 h-5 w-5' aria-hidden='true' />
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

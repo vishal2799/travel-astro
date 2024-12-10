@@ -3,105 +3,106 @@ import { Icon } from 'astro-icon/components';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { tracks2 } from '../../constants';
 
-const tracks = [
-  {
-    id: 1,
-    title: 'Sacred India Pilgrimage',
-    description:
-      "Embark on a transformative journey through India's most revered spiritual sites",
-    image: '/tour11.jpg',
-    duration: '12 days',
-    groupSize: 'Max 16 people',
-    destinations: ['Varanasi', 'Rishikesh', 'Amritsar', 'Bodhgaya'],
-    highlights: [
-      'Ganga Aarti ceremony',
-      'Yoga in Rishikesh',
-      'Golden Temple visit',
-      'Mahabodhi Temple',
-    ],
-  },
-  {
-    id: 2,
-    title: 'Himalayan Meditation Retreat',
-    description:
-      'Find inner peace and tranquility in the serene Himalayan mountains',
-    image: '/tour11.jpg',
-    duration: '10 days',
-    groupSize: 'Max 12 people',
-    destinations: ['Dharamshala', 'McLeod Ganj', 'Manali'],
-    highlights: [
-      'Tibetan Buddhism',
-      'Meditation sessions',
-      'Dalai Lama Temple',
-      'Nature walks',
-    ],
-  },
-  {
-    id: 3,
-    title: 'South India Temple Trail',
-    description:
-      "Discover the rich spiritual heritage of South India's magnificent temples",
-    image: '/tour11.jpg',
-    duration: '14 days',
-    groupSize: 'Max 14 people',
-    destinations: ['Madurai', 'Thanjavur', 'Mahabalipuram', 'Tirupati'],
-    highlights: [
-      'Meenakshi Temple',
-      'Brihadeeswara Temple',
-      'Shore Temple',
-      'Tirupati Balaji',
-    ],
-  },
-  {
-    id: 4,
-    title: 'Ayurvedic Wellness Journey',
-    description:
-      'Rejuvenate your body and soul with ancient Ayurvedic practices in Kerala',
-    image: '/tour11.jpg',
-    duration: '8 days',
-    groupSize: 'Max 10 people',
-    destinations: ['Kovalam', 'Varkala', 'Alleppey'],
-    highlights: [
-      'Ayurvedic treatments',
-      'Yoga sessions',
-      'Backwater cruise',
-      'Herbal gardens',
-    ],
-  },
-  {
-    id: 5,
-    title: 'Buddhist Circuit Expedition',
-    description:
-      'Follow in the footsteps of Buddha on this enlightening spiritual journey',
-    image: '/tour11.jpg',
-    duration: '11 days',
-    groupSize: 'Max 15 people',
-    destinations: ['Lumbini', 'Bodhgaya', 'Sarnath', 'Kushinagar'],
-    highlights: [
-      "Buddha's birthplace",
-      'Bodhi Tree',
-      'Dhamek Stupa',
-      'Mahaparinirvana Temple',
-    ],
-  },
-  {
-    id: 6,
-    title: 'Spiritual Rajasthan',
-    description:
-      'Experience the mystical and spiritual side of colorful Rajasthan',
-    image: '/tour11.jpg',
-    duration: '9 days',
-    groupSize: 'Max 12 people',
-    destinations: ['Pushkar', 'Ajmer', 'Ranakpur', 'Mount Abu'],
-    highlights: [
-      'Brahma Temple',
-      'Ajmer Sharif Dargah',
-      'Jain Temples',
-      'Sunset Point meditation',
-    ],
-  },
-];
+// const tracks = [
+//   {
+//     id: 1,
+//     title: 'Sacred India Pilgrimage',
+//     description:
+//       "Embark on a transformative journey through India's most revered spiritual sites",
+//     image: '/tour11.jpg',
+//     duration: '12 days',
+//     groupSize: 'Max 16 people',
+//     destinations: ['Varanasi', 'Rishikesh', 'Amritsar', 'Bodhgaya'],
+//     highlights: [
+//       'Ganga Aarti ceremony',
+//       'Yoga in Rishikesh',
+//       'Golden Temple visit',
+//       'Mahabodhi Temple',
+//     ],
+//   },
+//   {
+//     id: 2,
+//     title: 'Himalayan Meditation Retreat',
+//     description:
+//       'Find inner peace and tranquility in the serene Himalayan mountains',
+//     image: '/tour11.jpg',
+//     duration: '10 days',
+//     groupSize: 'Max 12 people',
+//     destinations: ['Dharamshala', 'McLeod Ganj', 'Manali'],
+//     highlights: [
+//       'Tibetan Buddhism',
+//       'Meditation sessions',
+//       'Dalai Lama Temple',
+//       'Nature walks',
+//     ],
+//   },
+//   {
+//     id: 3,
+//     title: 'South India Temple Trail',
+//     description:
+//       "Discover the rich spiritual heritage of South India's magnificent temples",
+//     image: '/tour11.jpg',
+//     duration: '14 days',
+//     groupSize: 'Max 14 people',
+//     destinations: ['Madurai', 'Thanjavur', 'Mahabalipuram', 'Tirupati'],
+//     highlights: [
+//       'Meenakshi Temple',
+//       'Brihadeeswara Temple',
+//       'Shore Temple',
+//       'Tirupati Balaji',
+//     ],
+//   },
+//   {
+//     id: 4,
+//     title: 'Ayurvedic Wellness Journey',
+//     description:
+//       'Rejuvenate your body and soul with ancient Ayurvedic practices in Kerala',
+//     image: '/tour11.jpg',
+//     duration: '8 days',
+//     groupSize: 'Max 10 people',
+//     destinations: ['Kovalam', 'Varkala', 'Alleppey'],
+//     highlights: [
+//       'Ayurvedic treatments',
+//       'Yoga sessions',
+//       'Backwater cruise',
+//       'Herbal gardens',
+//     ],
+//   },
+//   {
+//     id: 5,
+//     title: 'Buddhist Circuit Expedition',
+//     description:
+//       'Follow in the footsteps of Buddha on this enlightening spiritual journey',
+//     image: '/tour11.jpg',
+//     duration: '11 days',
+//     groupSize: 'Max 15 people',
+//     destinations: ['Lumbini', 'Bodhgaya', 'Sarnath', 'Kushinagar'],
+//     highlights: [
+//       "Buddha's birthplace",
+//       'Bodhi Tree',
+//       'Dhamek Stupa',
+//       'Mahaparinirvana Temple',
+//     ],
+//   },
+//   {
+//     id: 6,
+//     title: 'Spiritual Rajasthan',
+//     description:
+//       'Experience the mystical and spiritual side of colorful Rajasthan',
+//     image: '/tour11.jpg',
+//     duration: '9 days',
+//     groupSize: 'Max 12 people',
+//     destinations: ['Pushkar', 'Ajmer', 'Ranakpur', 'Mount Abu'],
+//     highlights: [
+//       'Brahma Temple',
+//       'Ajmer Sharif Dargah',
+//       'Jain Temples',
+//       'Sunset Point meditation',
+//     ],
+//   },
+// ];
 ---
 
 <Layout>
@@ -123,7 +124,7 @@ const tracks = [
 
       <div class='grid gap-12'>
         {
-          tracks.map((track, index) => (
+          tracks2.map((track, index) => (
             <div class='relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300'>
               <div
                 class={`flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
@@ -167,7 +168,7 @@ const tracks = [
                       <Icon name='flower1' class='w-5 h-5 mr-2 text-primary' />
                       Spiritual Highlights
                     </h3>
-                    <ul class='list-none text-primary-foreground columns-2'>
+                    <ul class='list-none text-primary-foreground columns-1 md:columns-2'>
                       {track.highlights.map((highlight, index) => (
                         <li class='flex items-center mb-2'>
                           <Icon
