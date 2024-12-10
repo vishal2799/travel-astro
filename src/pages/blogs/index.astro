@@ -1,8 +1,8 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import BlogCard from '../../components/BlogCard.astro';
-import Layout from '../../layouts/Layout.astro';
 
 const blogPosts = [
   {
@@ -72,25 +72,14 @@ const blogPosts = [
     readTime: '7 min read',
   },
 ];
-
-const categories = [
-  'Destinations',
-  'Food & Culture',
-  'Sustainable Travel',
-  'Spiritual Travel',
-  'Photography',
-  'Solo Travel',
-  'Adventure',
-  'Luxury Travel',
-];
 ---
 
 <Layout>
-  <div class='min-h-screen bg-gradient-to-b from-white-100 to-primary-100'>
+  <div class='min-h-screen bg-white-100'>
     <div class='container mx-auto px-4 py-8'>
       <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }]} />
 
-      <div class='max-w-3xl mx-auto text-center mt-12 mb-16'>
+      <div class='max-w-4xl mx-auto text-center mt-12 mb-16'>
         <h1 class='heading-1 mb-6'>Indian Wanderlust Blog</h1>
         <p class='subheading'>
           Explore travel tips, destination guides, and inspiring stories from
@@ -98,67 +87,8 @@ const categories = [
         </p>
       </div>
 
-      <div class='flex flex-col lg:flex-row gap-8 mb-16'>
-        <div class='lg:w-3/4'>
-          <div class='grid md:grid-cols-2 gap-8'>
-            {blogPosts.map((post) => <BlogCard post={post} />)}
-          </div>
-          <div class='mt-12 text-center'>
-            <button class='btn-primary'>Load More Posts</button>
-          </div>
-        </div>
-        <aside class='lg:w-1/4'>
-          <div class='bg-white rounded-lg shadow-md p-6 mb-8'>
-            <h3 class='text-xl font-bold mb-4'>Search Posts</h3>
-            <form class='flex'>
-              <input
-                type='text'
-                placeholder='Search...'
-                class='input flex-grow'
-              />
-              <button type='submit' class='btn-primary ml-2'>
-                <Icon name='search' class='w-5 h-5' />
-              </button>
-            </form>
-          </div>
-          <div class='bg-white rounded-lg shadow-md p-6 mb-8'>
-            <h3 class='text-xl font-bold mb-4'>Categories</h3>
-            <ul class='space-y-2'>
-              {
-                categories.map((category, index) => (
-                  <li>
-                    <a
-                      href={`/blog/category/${category
-                        .toLowerCase()
-                        .replace(/\s+/g, '-')}`}
-                      class='text-black-300 hover:text-primary transition-colors'
-                    >
-                      {category}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <div class='bg-white rounded-lg shadow-md p-6'>
-            <h3 class='text-xl font-bold mb-4'>Subscribe to Our Newsletter</h3>
-            <p class='text-black-300 mb-4'>
-              Stay updated with our latest travel tips and destinations in
-              India.
-            </p>
-            <form class='space-y-4'>
-              <input
-                type='email'
-                placeholder='Your email address'
-                class='input w-full'
-                required
-              />
-              <button type='submit' class='btn-primary w-full'>
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </aside>
+      <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        {blogPosts.map((post) => <BlogCard post={post} />)}
       </div>
     </div>
   </div>
