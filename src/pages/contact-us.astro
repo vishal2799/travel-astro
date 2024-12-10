@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Layout from '../layouts/Layout.astro';
-const FORMSPARK_URL = import.meta.env.FORM_URL;
+const FORMSPARK_URL = import.meta.env.CONTACT_FORM_URL;
 ---
 
 <Layout>
@@ -82,7 +82,12 @@ const FORMSPARK_URL = import.meta.env.FORM_URL;
               <input
                 type='hidden'
                 name='_redirect'
-                value='localhost:4321/thank-you'
+                value='localhost:4321/form-success'
+              />
+              <input
+                type='hidden'
+                name='_error'
+                value='localhost:4321/form-error'
               />
               <input type='hidden' name='_append' value='false' />
               <div>
