@@ -1,0 +1,124 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { Icon } from 'astro-icon/components';
+import { blogs } from '../../constants';
+
+export async function getStaticPaths() {
+  return blogs.map((blog) => ({
+    params: { id: blog.id.toString() },
+    props: { blogPost: blog },
+  }));
+}
+
+const { blogPost } = Astro.props;
+---
+
+<Layout>
+  <div class='min-h-screen bg-white-100'>
+    <div class='container mx-auto px-4 py-8'>
+      <Breadcrumbs
+        items={[
+          { label: 'Blog', href: '/blogs' },
+          { label: blogPost.title, href: `/blogs/${blogPost.id}` },
+        ]}
+      />
+
+      <article
+        class='max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden mt-8'
+      >
+        <div class='relative h-[400px]'>
+          <Image
+            src={blogPost.image}
+            alt={blogPost.title}
+            width={1200}
+            height={600}
+            class='object-cover w-full h-full'
+          />
+          <div
+            class='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end'
+          >
+            <div class='p-8'>
+              <h1 class='text-4xl md:text-5xl font-bold text-white mb-4'>
+                {blogPost.title}
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class='p-8'>
+          <div class='flex items-center text-black-300 mb-6 flex-wrap gap-4'>
+            <div class='flex items-center'>
+              <Icon name='people' class='w-5 h-5 mr-2' />
+              <span class='mr-4'>{blogPost.author}</span>
+            </div>
+            <div class='flex items-center'>
+              <Icon name='clock' class='w-5 h-5 mr-2' />
+              <span class='mr-4'>{blogPost.readTime}</span>
+            </div>
+            <div class='flex items-center'>
+              <Icon name='bookmark' class='w-5 h-5 mr-2' />
+              <span>{blogPost.category}</span>
+            </div>
+          </div>
+          <div
+            class='prose max-w-none mb-8 text-black-200'
+            set:html={blogPost.content}
+          />
+          <div class='flex flex-wrap gap-2 mb-8'>
+            {
+              blogPost.tags.map((tag) => (
+                <span class='bg-primary-100 text-primary px-3 py-1 rounded-full text-sm'>
+                  {tag}
+                </span>
+              ))
+            }
+          </div>
+          <div class='border-t border-black-100 pt-6'>
+            <h3 class='text-lg font-semibold mb-4'>Share this post:</h3>
+            <div class='flex space-x-4'>
+              <a
+                href='#'
+                class='text-primary hover:text-primary-100 transition-colors'
+                aria-label='Share on Facebook'
+              >
+                <Icon name='facebook' class='w-6 h-6' />
+              </a>
+              <a
+                href='#'
+                class='text-primary hover:text-primary-100 transition-colors'
+                aria-label='Share on Twitter'
+              >
+                <Icon name='instagram' class='w-6 h-6' />
+              </a>
+              <a
+                href='#'
+                class='text-primary hover:text-primary-100 transition-colors'
+                aria-label='Share on LinkedIn'
+              >
+                <Icon name='twitter-x' class='w-6 h-6' />
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class='max-w-4xl mx-auto mt-8'>
+        <a href='/blogs' class='btn-primary inline-flex items-center'>
+          <Icon name='chevron-left' class='w-5 h-5 mr-2' />
+          Back to Blog
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Add any additional styles here if needed */
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-primary;
+  }
+  .prose p {
+    @apply mb-4 text-black-300 leading-relaxed;
+  }
+</style>

@@ -580,3 +580,38 @@ export const tours3 = [
   },
   // Add more tour objects here...
 ];
+
+export const blogs = [
+  {
+    id: 1,
+    title: '10 Hidden Gems in Rajasthan',
+    content: `
+      <p>Rajasthan, the Land of Kings, is renowned for its majestic forts and opulent palaces. However, beyond these well-known attractions lie hidden treasures waiting to be discovered. In this post, we'll explore ten hidden gems that will take your breath away and provide unforgettable experiences off the beaten path.</p>
+  
+      <h2>1. Bhangarh Fort, Alwar</h2>
+      <p>Known as one of the most haunted places in India, Bhangarh Fort offers a blend of history and mystery. The ruins of this 17th-century fort tell tales of curses and paranormal activities, making it a thrilling destination for adventure seekers.</p>
+  
+      <h2>2. Chand Baori, Abhaneri</h2>
+      <p>This ancient stepwell is an architectural marvel with its intricate geometric patterns. Dating back to the 8th century, Chand Baori is one of the largest and deepest stepwells in India, offering a unique glimpse into the region's water conservation heritage.</p>
+  
+      <h2>3. Kumbhalgarh Wildlife Sanctuary</h2>
+      <p>Home to the second-longest wall in the world after the Great Wall of China, this sanctuary offers not just historical significance but also rich biodiversity. Spot leopards, wolves, and various bird species while exploring the rugged Aravalli hills.</p>
+  
+      <h2>4. Ranakpur Jain Temple</h2>
+      <p>Hidden in a remote valley of the Aravalli Range, this 15th-century temple is a masterpiece of intricate marble carvings. With 1,444 uniquely carved pillars, it's a testament to the region's rich architectural heritage.</p>
+  
+      <h2>5. Barmer</h2>
+      <p>This lesser-known desert town is a hub of traditional Rajasthani crafts. Explore its colorful bazaars filled with intricate woodcarvings, vibrant textiles, and unique pottery, offering an authentic glimpse into rural Rajasthan.</p>
+  
+      <p>These hidden gems in Rajasthan offer unique experiences that go beyond the typical tourist trail. By venturing off the beaten path, you'll discover the true essence of this diverse and captivating state. Remember to travel responsibly and respect local cultures and environments to help preserve these beautiful destinations for future generations.</p>
+    `,
+    excerpt:
+      'Discover lesser-known destinations in the Land of Kings that will take your breath away and provide unforgettable experiences off the beaten path.',
+    image: '/tour11.jpg',
+    author: 'Priya Sharma',
+    date: 'May 15, 2023',
+    category: 'Destinations',
+    readTime: '10 min read',
+    tags: ['Rajasthan', 'Hidden Gems', 'Adventure', 'Culture', 'History'],
+  },
+];
