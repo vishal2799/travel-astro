@@ -1,14 +1,17 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import HeroImg from '../assets/images/hero1.jpg';
+import ServiceImg from '../assets/images/services.jpg';
 ---
 
 <Layout>
   <div class='min-h-screen bg-white-100'>
     {/* Hero Section */}
     <section class='relative h-[400px] md:h-[500px] bg-black-200 text-white'>
-      <img
-        src='/hero1.jpg'
+      <Image
+        src={HeroImg}
         alt='Indian Wanderlust Travel Team'
         class='absolute inset-0 h-full w-full object-cover opacity-50'
       />
@@ -122,8 +125,8 @@ import Layout from '../layouts/Layout.astro';
         <h2 class='heading-2 text-center mb-12'>Our Expertise</h2>
         <div class='grid md:grid-cols-2 gap-8 items-center'>
           <div>
-            <img
-              src='/services.jpg'
+            <Image
+              src={ServiceImg}
               alt='Indian travel experience'
               width={600}
               height={400}

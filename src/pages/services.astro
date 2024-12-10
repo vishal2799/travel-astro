@@ -3,6 +3,8 @@ import { Icon } from 'astro-icon/components';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { services } from '../constants';
 import Layout from '../layouts/Layout.astro';
+import ServiceImg from '../assets/images/services.jpg';
+import { Image } from 'astro:assets';
 ---
 
 <Layout>
@@ -37,8 +39,8 @@ import Layout from '../layouts/Layout.astro';
       <section class='bg-white rounded-2xl shadow-lg overflow-hidden mb-16'>
         <div class='md:flex'>
           <div class='md:w-1/2'>
-            <img
-              src='/services.jpg'
+            <Image
+              src={ServiceImg}
               alt='Travel expert assisting a client'
               width={800}
               height={600}
