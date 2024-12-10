@@ -2,6 +2,7 @@
 import Image from 'astro/components/Image.astro';
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import ErrorImg from '../assets/images/404.png';
 ---
 
 <Layout>
@@ -10,10 +11,10 @@ import { Icon } from 'astro-icon/components';
   >
     <div class='max-w-2xl mx-auto'>
       <Image
-        src='/404.png'
+        src={ErrorImg}
         alt='404 Illustration'
-        width={400}
-        height={200}
+        width={300}
+        height={150}
         class='mx-auto mb-8'
       />
       <h1 class='text-4xl md:text-5xl font-bold text-primary mb-4'>
@@ -32,7 +33,7 @@ import { Icon } from 'astro-icon/components';
           onclick='history.back()'
           class='btn-secondary inline-flex items-center justify-center'
         >
-          <Icon name='chevron-right' class='w-5 h-5 mr-2' />
+          <Icon name='chevron-left' class='w-5 h-5 mr-2' />
           Go Back
         </button>
       </div>

@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Layout from '../layouts/Layout.astro';
+const FORMSPARK_URL = import.meta.env.FORM_URL;
 ---
 
 <Layout>
@@ -77,7 +78,13 @@ import Layout from '../layouts/Layout.astro';
 
           <div>
             <h2 class='heading-3 mb-6'>Send Us a Message</h2>
-            <form class='space-y-4'>
+            <form action={FORMSPARK_URL} method='POST' class='space-y-4'>
+              <input
+                type='hidden'
+                name='_redirect'
+                value='localhost:4321/thank-you'
+              />
+              <input type='hidden' name='_append' value='false' />
               <div>
                 <label
                   for='name'
