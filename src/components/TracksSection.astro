@@ -1,0 +1,114 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { tracks2 } from '../constants';
+
+const tracks = [
+  {
+    id: 1,
+    title: 'Sacred India Pilgrimage',
+    description:
+      "Embark on a transformative journey through India's most revered spiritual sites",
+    image: '/placeholder.svg?height=400&width=600',
+    duration: '12 days',
+    groupSize: 'Max 16 people',
+    destinations: ['Varanasi', 'Rishikesh', 'Amritsar', 'Bodhgaya'],
+  },
+  {
+    id: 2,
+    title: 'Himalayan Meditation Retreat',
+    description:
+      'Find inner peace and tranquility in the serene Himalayan mountains',
+    image: '/placeholder.svg?height=400&width=600',
+    duration: '10 days',
+    groupSize: 'Max 12 people',
+    destinations: ['Dharamshala', 'McLeod Ganj', 'Manali'],
+  },
+  {
+    id: 3,
+    title: 'South India Temple Trail',
+    description:
+      "Discover the rich spiritual heritage of South India's magnificent temples",
+    image: '/placeholder.svg?height=400&width=600',
+    duration: '14 days',
+    groupSize: 'Max 14 people',
+    destinations: ['Madurai', 'Thanjavur', 'Mahabalipuram', 'Tirupati'],
+  },
+];
+---
+
+<section class='py-16 bg-gradient-to-b from-white-100 to-primary-100'>
+  <div class='container mx-auto px-4'>
+    <h2 class='text-4xl md:text-5xl font-bold text-primary text-center mb-8'>
+      Spiritual Journeys
+    </h2>
+    <p class='text-xl text-black-300 text-center mb-12 max-w-3xl mx-auto'>
+      Embark on transformative experiences designed to nourish your soul and
+      connect with India's profound spirituality
+    </p>
+
+    <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      {
+        tracks2.map((track) => (
+          <div class='bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
+            <div class='relative h-48'>
+              <Image
+                src={track.image}
+                alt={track.title}
+                width={600}
+                height={400}
+                class='w-full h-full object-cover'
+              />
+              <div class='absolute inset-0 bg-gradient-to-t from-black/70 to-transparent' />
+              <div class='absolute bottom-4 left-4 right-4'>
+                <h3 class='text-xl font-bold text-white mb-2'>{track.title}</h3>
+              </div>
+            </div>
+            <div class='p-6 flex-grow flex flex-col'>
+              <p class='text-black-300 mb-4 flex-grow'>{track.description}</p>
+              <div class='flex justify-between items-center text-sm text-black-300 mb-4'>
+                <div class='flex items-center'>
+                  <Icon name='clock' class='w-4 h-4 mr-2 text-primary' />
+                  <span>{track.duration}</span>
+                </div>
+                <div class='flex items-center'>
+                  <Icon name='people' class='w-4 h-4 mr-2 text-primary' />
+                  <span>{track.groupSize}</span>
+                </div>
+              </div>
+              <div class='mb-4'>
+                <h4 class='text-sm font-semibold text-black-200 mb-2 flex items-center'>
+                  <Icon name='geo-alt' class='w-4 h-4 mr-2 text-primary' />
+                  Sacred Destinations
+                </h4>
+                <p class='text-xs text-black-300'>
+                  {track.destinations.join(' • ')}
+                </p>
+              </div>
+              <a
+                href={`/tracks/${track.id}`}
+                class='btn-primary text-white text-center group mt-auto flex items-center justify-center px-4 py-2 rounded-lg transition-colors duration-300'
+              >
+                Explore Journey
+                <Icon
+                  name='wind'
+                  class='w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1'
+                />
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class='text-center mt-12'>
+      <a
+        href='/tracks'
+        class='btn-primary inline-flex items-center justify-center px-6 py-3 rounded-lg text-lg'
+      >
+        View All Spiritual Journeys
+        <Icon name='wind' class='w-6 h-6 ml-2' />
+      </a>
+    </div>
+  </div>
+</section>
